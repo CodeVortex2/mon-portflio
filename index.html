@@ -12,7 +12,7 @@
     <link rel="preload" href="/portfolio/css/style.js" as="script">
 
     <!-- CDN et ressources externes -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="/portfolio/css/style.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
@@ -29,7 +29,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -38,22 +37,6 @@
 
         .fade-in {
             animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        /* Amélioration de la lisibilité du texte sur l'image de fond */
-        .text-overlay {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Optimisation pour le mode sombre */
-        @media (prefers-color-scheme: dark) {
-            body {
-                color: #e2e8f0;
-            }
-
-            .menu-link {
-                color: #1e293b !important;
-            }
         }
 
         /* Style pour les messages de statut */
@@ -75,387 +58,439 @@
             color: #b91c1c;
             border: 1px solid #f87171;
         }
+
+        /* Fond avec overlay pour meilleure lisibilité */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                              url(https://images.unsplash.com/photo-1522252234503-e356532cafd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxjb2RlfGVufDB8MHx8fDE2OTQwOTg0MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Section styling */
+        .section-container {
+            @apply rounded-xl shadow-2xl border border-white/50 bg-white/20 backdrop-blur-sm p-4 md:p-6 lg:p-8;
+        }
+
+        /* Smooth transitions */
+        .transition-smooth {
+            transition: all 0.3s ease-in-out;
+        }
     </style>
 </head>
 
-<body
-    class="font-serif bg-[url(https://images.unsplash.com/photo-1522252234503-e356532cafd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxjb2RlfGVufDB8MHx8fDE2OTQwOTg0MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080)] bg-cover bg-center bg-no-repeat bg-fixed min-h-screen">
+<body class="font-sans hero-bg min-h-screen text-white">
     <!-- Navigation -->
-    <nav class="fixed top-5 right-5 z-50">
+    <nav class="fixed top-4 right-4 z-50">
         <button id="menuButton" aria-label="Menu" aria-expanded="false"
-            class="text-gray-700 p-1 rounded-lg bg-white hover:bg-gray-200 bg-opacity-50 transition shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400">
+            class="text-gray-700 p-2 rounded-lg bg-white/80 hover:bg-white transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#4B77D1"
                 aria-hidden="true">
                 <path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z" />
             </svg>
         </button>
         <div id="menuContent"
-            class="hidden absolute right-0 mt-2 text-2xl sm:w-80 border border-gray-200 rounded-xl shadow-2xl bg-white bg-opacity-70 space-y-2 text-center font-extrabold backdrop-blur-lg">
+            class="hidden absolute right-0 mt-2 text-xl sm:text-2xl w-64 sm:w-80 border border-white/30 rounded-xl shadow-2xl bg-white/80 backdrop-blur-lg space-y-1 text-center font-semibold">
             <a href="#" data-section="Home"
-                class="menu-link block px-4 py-2 hover:bg-slate-100 transition text-gray-700 rounded-lg"><i
-                    class="fas fa-home mr-2"></i>Accueil</a>
+                class="menu-link block px-4 py-3 hover:bg-slate-100/50 transition-smooth text-gray-700 rounded-lg">
+                <i class="fas fa-home mr-2"></i>Accueil
+            </a>
             <a href="#" data-section="About"
-                class="menu-link block px-4 py-3 hover:bg-gray-100 transition text-gray-800 rounded-lg"><i
-                    class="fas fa-user mr-2"></i>À propos</a>
+                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
+                <i class="fas fa-user mr-2"></i>À propos
+            </a>
             <a href="#" data-section="Skills"
-                class="menu-link block px-4 py-3 hover:bg-gray-100 transition text-gray-800 rounded-lg"><i
-                    class="fas fa-code mr-2"></i>Compétences</a>
+                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
+                <i class="fas fa-code mr-2"></i>Compétences
+            </a>
             <a href="#" data-section="Projets"
-                class="menu-link block px-4 py-3 hover:bg-gray-100 transition text-gray-800 rounded-lg"><i
-                    class="fas fa-project-diagram mr-2"></i>Projets</a>
+                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
+                <i class="fas fa-project-diagram mr-2"></i>Projets
+            </a>
             <a href="#" data-section="Certificat"
-                class="menu-link block px-4 py-3 hover:bg-gray-100 transition text-gray-800 rounded-lg"><i
-                    class="fas fa-certificate mr-2"></i>Certificats</a>
+                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
+                <i class="fas fa-certificate mr-2"></i>Certificats
+            </a>
             <a href="#" data-section="Contact"
-                class="menu-link block px-4 py-3 hover:bg-gray-100 transition text-gray-800 rounded-lg"><i
-                    class="fas fa-envelope mr-2"></i>Contact</a>
+                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
+                <i class="fas fa-envelope mr-2"></i>Contact
+            </a>
         </div>
     </nav>
 
     <!-- Contenu principal -->
-    <main class="m-4 sm:m-12 lg:m-24 relative pt-16">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <!-- Section Accueil -->
-        <section id="Home"
-            class="section shadow-2xl rounded-md border border-white m-4 bg-slate-300 bg-opacity-40 p-4 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 text-overlay">
-            <img src="images/3.jpg" alt="GALE Kodzo George"
-                class="rounded-full shadow-md w-60 sm:w-64 md:w-80 m-16 lg:w-96 border-4 border-white hover:scale-105 transition-transform duration-300"
-                loading="lazy" />
-            <div class="text-center md:text-left pl-20">
-                <h1 class="text-6xl sm:text-5xl font-extrabold">GALE Kodzo George</h1>
-                <p class="text-xl mt-2">Développeur Web et Mobile | Passionné de Technologie</p>
-                <p class="text-lg mt-1">Étudiant à IAI Togo</p>
-                <div class="mt-4 space-x-4">
-                    <a href="https://github.com/CodeVortex2" target="_blank" rel="noopener noreferrer"
-                        class="text-black hover:underline"><i class="fab fa-github mr-1"></i>GitHub</a>
-                    <a href="https://www.linkedin.com/in/geor-gale" target="_blank" rel="noopener noreferrer"
-                        class="text-blue-600 hover:underline"><i class="fab fa-linkedin mr-1"></i>LinkedIn</a>
-                    <a href="mailto:galekodzogeorge@gmail.com" class="text-white hover:underline"><i
-                            class="fas fa-envelope mr-1"></i>Contact</a>
+        <section id="Home" class="section-container fade-in">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="flex-shrink-0">
+                    <img src="images/3.jpg" alt="GALE Kodzo George"
+                        class="rounded-full shadow-lg w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 border-4 border-white/80 hover:scale-105 transition-transform duration-300 mx-auto"
+                        loading="lazy" />
                 </div>
-                <div class="mt-6 space-x-4">
-                    <a href="https://wa.me/+22893036351" target="_blank" rel="noopener noreferrer"
-                        class="text-white bg-green-500 px-4 py-2 rounded-md hover:bg-green-600 transition inline-flex items-center">
-                        <i class="fab fa-whatsapp mr-2"></i>Contact WhatsApp
-                    </a>
-                    <a href="/portfolio/images/CV.pdf" download
-                        class="text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600 transition inline-flex items-center">
-                        <i class="fas fa-download mr-2"></i>Télécharger CV
-                    </a>
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-2">GALE Kodzo George</h1>
+                    <p class="text-lg sm:text-xl md:text-2xl mb-1">Développeur Web et Mobile</p>
+                    <p class="text-base sm:text-lg text-white/90 mb-4">Étudiant à IAI Togo</p>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 mb-6">
+                        <a href="https://github.com/CodeVortex2" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center px-3 py-1 bg-black/30 hover:bg-black/50 rounded-full transition-smooth">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/geor-gale" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center px-3 py-1 bg-blue-600/80 hover:bg-blue-600 rounded-full transition-smooth">
+                            <i class="fab fa-linkedin mr-2"></i>LinkedIn
+                        </a>
+                        <a href="mailto:galekodzogeorge@gmail.com"
+                            class="inline-flex items-center px-3 py-1 bg-gray-700/80 hover:bg-gray-700 rounded-full transition-smooth">
+                            <i class="fas fa-envelope mr-2"></i>Email
+                        </a>
+                    </div>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                        <a href="https://wa.me/+22893036351" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md transition-smooth">
+                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                        </a>
+                        <a href="/portfolio/images/CV.pdf" download
+                            class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition-smooth">
+                            <i class="fas fa-download mr-2"></i>Télécharger CV
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Section À propos -->
-        <section id="About"
-            class="section hidden rounded-md shadow-2xl border border-white m-4 bg-slate-300 bg-opacity-40 p-4 fade-in">
-            <h2 class="text-3xl text-center font-bold mb-4">À propos de moi</h2>
-            <div
-                class="flex flex-col md:flex-row items-center m-4 sm:m-9 shadow-xl p-4 rounded-xl bg-slate-200 space-y-4 md:space-y-0 md:space-x-4">
-                <p class="text-justify p-4 sm:p-7">
-                    Je suis GALE Kodzo George, développeur web et mobile passionné par la création de solutions
-                    numériques
-                    efficaces. Actuellement étudiant à l'IAI Togo, je me spécialise dans le développement avec des
-                    technologies comme JavaScript, PHP, Python et C#.
-                    <br><br>
-                    Je m'efforce de produire un code propre et performant, tout en mettant un accent particulier sur
-                    l'expérience utilisateur et la sécurité des applications. Toujours en quête d'apprentissage, je
-                    cherche à relever des défis techniques et à améliorer continuellement mes compétences.
-                </p>
-                <img src="/images/1.JPG" alt="Photo de GALE Kodzo George"
-                    class="h-64 sm:h-80 w-auto rounded-2xl shadow-md" loading="lazy">
+        <section id="About" class="section-container hidden mt-8 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">À propos de moi</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8 items-center">
+                <div class="flex-1">
+                    <p class="text-lg leading-relaxed">
+                        Je suis GALE Kodzo George, développeur web et mobile passionné par la création de solutions
+                        numériques efficaces. Actuellement étudiant à l'IAI Togo, je me spécialise dans le développement avec des
+                        technologies comme JavaScript, PHP, Python et C#.
+                        <br><br>
+                        Je m'efforce de produire un code propre et performant, tout en mettant un accent particulier sur
+                        l'expérience utilisateur et la sécurité des applications. Toujours en quête d'apprentissage, je
+                        cherche à relever des défis techniques et à améliorer continuellement mes compétences.
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <img src="/images/1.JPG" alt="Photo de GALE Kodzo George"
+                        class="rounded-xl shadow-lg w-full max-w-xs h-auto" loading="lazy">
+                </div>
             </div>
-            <div
-                class="flex flex-col md:flex-row items-center m-4 sm:m-9 shadow-xl p-4 rounded-xl bg-slate-200 space-y-4 md:space-y-0 md:space-x-4 mt-6">
-                <img src="https://th.bing.com/th/id/OIP.O6lbidhxmYhqosxMFKpRrwHaFj?w=243&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-                    alt="Ligue de Lomé golfe athlétisme" class="m-2 sm:m-5 border-2 rounded-2xl w-full max-w-xs h-auto"
-                    loading="lazy">
-                <p class="text-justify p-4 sm:p-7">
-                    Passionné par le développement web et mobile, je combine mes compétences techniques avec une forte
-                    discipline acquise grâce à l'athlétisme. J'ai eu l'honneur de remporter une médaille de bronze à la
-                    Ligue de Lomé Golfe Athlétisme et d'obtenir une quatrième place au Tournoi de la Fraternité à
-                    Ouagadougou, organisé par l'Union Internationale de Pentathlon Moderne (UIPM). Ces expériences
-                    sportives m'ont inculqué rigueur, persévérance et une gestion efficace du stress, des qualités que
-                    j'intègre quotidiennement dans mes projets informatiques pour atteindre des résultats optimaux.
-                </p>
+            
+            <div class="flex flex-col lg:flex-row gap-8 items-center mt-12">
+                <div class="flex-shrink-0 order-last lg:order-first">
+                    <img src="https://th.bing.com/th/id/OIP.O6lbidhxmYhqosxMFKpRrwHaFj?w=243&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                        alt="Ligue de Lomé golfe athlétisme" class="rounded-xl shadow-lg w-full max-w-xs h-auto border-2"
+                        loading="lazy">
+                </div>
+                <div class="flex-1">
+                    <p class="text-lg leading-relaxed">
+                        Passionné par le développement web et mobile, je combine mes compétences techniques avec une forte
+                        discipline acquise grâce à l'athlétisme. J'ai eu l'honneur de remporter une médaille de bronze à la
+                        Ligue de Lomé Golfe Athlétisme et d'obtenir une quatrième place au Tournoi de la Fraternité à
+                        Ouagadougou, organisé par l'Union Internationale de Pentathlon Moderne (UIPM). Ces expériences
+                        sportives m'ont inculqué rigueur, persévérance et une gestion efficace du stress, des qualités que
+                        j'intègre quotidiennement dans mes projets informatiques pour atteindre des résultats optimaux.
+                    </p>
+                </div>
             </div>
         </section>
 
         <!-- Section Compétences -->
-        <section id="Skills"
-            class="section hidden rounded-md shadow-2xl border border-white m-4 bg-slate-300 bg-opacity-40 p-6 sm:p-10 fade-in">
-            <h2 class="text-3xl font-bold mb-8 text-center">Compétences</h2>
-            <div class="w-full max-w-2xl mx-auto space-y-6">
+        <section id="Skills" class="section-container hidden mt-8 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Compétences</h2>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-semibold"><i class="fab fa-html5 text-orange-500 mr-2"></i>HTML & CSS</span>
+                        <span class="font-semibold text-lg">
+                            <i class="fab fa-html5 text-orange-500 mr-2"></i>HTML & CSS
+                        </span>
                         <span class="text-sm font-medium">95%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3">
-                        <div class="bg-orange-500 h-3 rounded-full" style="width: 95%"></div>
+                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
+                        <div class="bg-orange-500 h-2.5 rounded-full" style="width: 95%"></div>
                     </div>
                 </div>
 
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-semibold"><i class="fab fa-js text-yellow-400 mr-2"></i>JavaScript</span>
+                        <span class="font-semibold text-lg">
+                            <i class="fab fa-js text-yellow-400 mr-2"></i>JavaScript
+                        </span>
                         <span class="text-sm font-medium">50%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3">
-                        <div class="bg-yellow-400 h-3 rounded-full" style="width: 50%"></div>
+                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
+                        <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 50%"></div>
                     </div>
                 </div>
 
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-semibold"><i class="fab fa-php text-purple-500 mr-2"></i>PHP & MySQL</span>
+                        <span class="font-semibold text-lg">
+                            <i class="fab fa-php text-purple-500 mr-2"></i>PHP & MySQL
+                        </span>
                         <span class="text-sm font-medium">75%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3">
-                        <div class="bg-purple-500 h-3 rounded-full" style="width: 75%"></div>
+                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
+                        <div class="bg-purple-500 h-2.5 rounded-full" style="width: 75%"></div>
                     </div>
                 </div>
 
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-semibold"><i class="fab fa-python text-blue-500 mr-2"></i>Python</span>
+                        <span class="font-semibold text-lg">
+                            <i class="fab fa-python text-blue-500 mr-2"></i>Python
+                        </span>
                         <span class="text-sm font-medium">70%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3">
-                        <div class="bg-blue-500 h-3 rounded-full" style="width: 70%"></div>
+                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
+                        <div class="bg-blue-500 h-2.5 rounded-full" style="width: 70%"></div>
                     </div>
                 </div>
 
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-semibold"><i class="fas fa-paint-brush text-cyan-400 mr-2"></i>Tailwind
-                            CSS</span>
+                        <span class="font-semibold text-lg">
+                            <i class="fas fa-paint-brush text-cyan-400 mr-2"></i>Tailwind CSS
+                        </span>
                         <span class="text-sm font-medium">85%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3">
-                        <div class="bg-cyan-400 h-3 rounded-full" style="width: 85%"></div>
+                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
+                        <div class="bg-cyan-400 h-2.5 rounded-full" style="width: 85%"></div>
                     </div>
                 </div>
 
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-semibold"><i class="fab fa-laravel text-red-500 mr-2"></i>Laravel</span>
+                        <span class="font-semibold text-lg">
+                            <i class="fab fa-laravel text-red-500 mr-2"></i>Laravel
+                        </span>
                         <span class="text-sm font-medium">40%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-3">
-                        <div class="bg-red-500 h-3 rounded-full" style="width: 40%"></div>
+                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
+                        <div class="bg-red-500 h-2.5 rounded-full" style="width: 40%"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Section Projets -->
-        <section id="Projets"
-            class="section hidden rounded-md shadow-2xl border border-white m-4 bg-slate-300 bg-opacity-40 p-4 fade-in">
-            <h2 class="text-3xl font-bold mb-8 text-center">Mes Projets</h2>
+        <section id="Projets" class="section-container hidden mt-8 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Mes Projets</h2>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
                 <!-- Projet Santé Togo -->
-                <div class="bg-slate-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-red-600 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="text-red-400 text-4xl mb-4">
                         <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h3 class="text-xl font-semibold">Santé Togo</h3>
-                    <p class="mt-2 text-gray-700">
+                    <h3 class="text-xl font-semibold mb-2">Santé Togo</h3>
+                    <p class="text-white/80 mb-4">
                         Application web & mobile pour améliorer l'accès aux soins de santé au Togo : dossier médical
                         numérique, prise de rendez-vous, rappels de médicaments et gestion des dons de sang.
                     </p>
-                    <a href="#" class="mt-3 inline-block text-blue-600 hover:underline">Voir le projet →</a>
+                    <a href="#" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
 
                 <!-- Projet GénieScore -->
-                <div class="bg-slate-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-yellow-600 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="text-yellow-400 text-4xl mb-4">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 class="text-xl font-semibold">GénieScore</h3>
-                    <p class="mt-2 text-gray-700">
-                        Une application web pour la gestion des points
-                        dans les compétitions de génie en herbe. Elle permet d'initier des matchs, attribuer ou retirer
-                        des points, et de gérer un minuteur par rubrique.
+                    <h3 class="text-xl font-semibold mb-2">GénieScore</h3>
+                    <p class="text-white/80 mb-4">
+                        Une application web pour la gestion des points dans les compétitions de génie en herbe. Elle permet d'initier des matchs, attribuer ou retirer des points, et de gérer un minuteur par rubrique.
                     </p>
-                    <a href="https://geniesorce.netlify.app/" target="_blank"
-                        class="mt-3 inline-block text-blue-600 hover:underline">Voir le projet →</a>
+                    <a href="https://geniesorce.netlify.app/" target="_blank" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
 
                 <!-- Projet Netflix -->
-                <div class="bg-slate-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-blue-600 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="text-blue-400 text-4xl mb-4">
                         <i class="fas fa-film"></i>
                     </div>
-                    <h3 class="text-xl font-semibold">Page Netflix</h3>
-                    <p class="mt-2 text-gray-700">
+                    <h3 class="text-xl font-semibold mb-2">Page Netflix</h3>
+                    <p class="text-white/80 mb-4">
                         Reproduction statique de la page d'accueil de Netflix avec HTML, CSS et JavaScript.
                     </p>
-                    <a href="https://shimmering-chimera-01950b.netlify.app/"
-                        class="mt-3 inline-block text-blue-600 hover:underline">Voir le projet →</a>
+                    <a href="https://shimmering-chimera-01950b.netlify.app/" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
 
                 <!-- Projet To-Do List -->
-                <div class="bg-slate-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-green-600 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="text-green-400 text-4xl mb-4">
                         <i class="fas fa-tasks"></i>
                     </div>
-                    <h3 class="text-xl font-semibold">To-Do List Dynamique</h3>
-                    <p class="mt-2 text-gray-700">
+                    <h3 class="text-xl font-semibold mb-2">To-Do List Dynamique</h3>
+                    <p class="text-white/80 mb-4">
                         Application pour gérer des tâches avec ajout, modification et suppression en temps réel.
                     </p>
-                    <a href="#" class="mt-3 inline-block text-blue-600 hover:underline">Voir le projet →</a>
+                    <a href="#" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
 
                 <!-- Projet Tech Express -->
-                <div class="bg-slate-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-blue-600 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="text-blue-400 text-4xl mb-4">
                         <i class="fas fa-laptop"></i>
                     </div>
-                    <h3 class="text-xl font-semibold">Tech Express – Boutique en ligne</h3>
-                    <p class="mt-2 text-gray-700">
+                    <h3 class="text-xl font-semibold mb-2">Tech Express – Boutique en ligne</h3>
+                    <p class="text-white/80 mb-4">
                         Site e-commerce moderne développé avec HTML, Bootstrap et JavaScript, dédié à la vente de
                         produits technologiques. Interface responsive, fluide et intuitive.
                     </p>
-                    <a href="https://techexpres.netlify.app/" class="mt-3 inline-block text-blue-600 hover:underline">Voir le projet →</a>
+                    <a href="https://techexpres.netlify.app/" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
-
-
             </div>
         </section>
 
-
         <!-- Section Certificats -->
-        <section id="Certificat"
-            class="section hidden rounded-md shadow-2xl border border-white m-4 bg-slate-300 bg-opacity-40 p-4 fade-in">
-            <h2 class="text-3xl font-bold mb-8 text-center">Certificats</h2>
+        <section id="Certificat" class="section-container hidden mt-8 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Certificats</h2>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Certificat SQL -->
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer group">
+                <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
                     <div class="overflow-hidden rounded-md">
                         <img src="/images/sql_intermediate certificate_page-0001.jpg"
                             alt="Certificat SQL (Intermediate)"
-                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
                     </div>
-                    <div class="mt-2">
-                        <h3 class="text-xl font-semibold text-blue-600">SQL (Intermediate)</h3>
-                        <p class="text-gray-700"><i class="fas fa-award text-yellow-500 mr-1"></i>HackerRank</p>
-                        <p class="text-sm text-gray-500"><i class="far fa-calendar-alt mr-1"></i>Janvier 2025</p>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold text-blue-300">SQL (Intermediate)</h3>
+                        <p class="text-white/80"><i class="fas fa-award text-yellow-400 mr-2"></i>HackerRank</p>
+                        <p class="text-sm text-white/60"><i class="far fa-calendar-alt mr-2"></i>Janvier 2025</p>
                     </div>
                 </div>
 
                 <!-- Certificat Python -->
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer group">
+                <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
                     <div class="overflow-hidden rounded-md">
                         <img src="/images/CertificationPython.jpg"
                             alt="Certification rapidité de développement Python"
-                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
                     </div>
-                    <div class="mt-2">
-                        <h3 class="text-xl font-semibold text-blue-600">Rapidité de développement Python</h3>
-                        <p class="text-gray-700"><i class="fas fa-award text-yellow-500 mr-1"></i>CodinGame</p>
-                        <p class="text-sm text-gray-500"><i class="far fa-calendar-alt mr-1"></i>Décembre 2024</p>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold text-blue-300">Rapidité de développement Python</h3>
+                        <p class="text-white/80"><i class="fas fa-award text-yellow-400 mr-2"></i>CodinGame</p>
+                        <p class="text-sm text-white/60"><i class="far fa-calendar-alt mr-2"></i>Décembre 2024</p>
                     </div>
                 </div>
 
                 <!-- Certificat Linux -->
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer group">
+                <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
                     <div class="overflow-hidden rounded-md">
                         <img src="/images/Partner-_NDG_Linux_Unhatched_certificate_georgegale825-gmail-com_3ce0e2ce-37c6-4f23-83a1-9d01e2b3c992_page-0001.jpg"
                             alt="Certificat NDG Linux Unhatched"
-                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
                     </div>
-                    <div class="mt-2">
-                        <h3 class="text-xl font-semibold text-blue-600">NDG Linux Unhatched</h3>
-                        <p class="text-gray-700"><i class="fas fa-award text-yellow-500 mr-1"></i>Cisco Networking
-                            Academy</p>
-                        <p class="text-sm text-gray-500"><i class="far fa-calendar-alt mr-1"></i>Juillet 2024</p>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold text-blue-300">NDG Linux Unhatched</h3>
+                        <p class="text-white/80"><i class="fas fa-award text-yellow-400 mr-2"></i>Cisco Networking Academy</p>
+                        <p class="text-sm text-white/60"><i class="far fa-calendar-alt mr-2"></i>Juillet 2024</p>
                     </div>
                 </div>
 
                 <!-- Certificat CCNA -->
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer group">
+                <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
                     <div class="overflow-hidden rounded-md">
                         <img src="/images/Kodzo GeorgeGALE-IAI-TOGO_CCNA1_V-certificate (1)_page-0001.jpg"
                             alt="Certificat CCNAv7: Introduction aux réseaux"
-                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+                            class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
                     </div>
-                    <div class="mt-2">
-                        <h3 class="text-xl font-semibold text-blue-600">CCNAv7: Introduction aux réseaux</h3>
-                        <p class="text-gray-700"><i class="fas fa-award text-yellow-500 mr-1"></i>Cisco Networking
-                            Academy</p>
-                        <p class="text-sm text-gray-500"><i class="far fa-calendar-alt mr-1"></i>Juillet 2024</p>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold text-blue-300">CCNAv7: Introduction aux réseaux</h3>
+                        <p class="text-white/80"><i class="fas fa-award text-yellow-400 mr-2"></i>Cisco Networking Academy</p>
+                        <p class="text-sm text-white/60"><i class="far fa-calendar-alt mr-2"></i>Juillet 2024</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Section Contact -->
-        <section id="Contact"
-            class="section hidden rounded-md shadow-2xl border border-white m-4 bg-slate-300 bg-opacity-40 p-4 fade-in">
-            <h2 class="text-3xl font-bold mb-6 text-center">Contactez-moi</h2>
+        <section id="Contact" class="section-container hidden mt-8 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Contactez-moi</h2>
 
             <!-- Messages de statut -->
             <div id="statusMessage" class="status-message hidden"></div>
 
-            <form id="contactForm" class="space-y-4 max-w-2xl mx-auto">
+            <form id="contactForm" class="space-y-6 max-w-2xl mx-auto">
                 <div class="space-y-2">
-                    <label for="name" class="block font-medium">Nom complet <span class="text-red-500">*</span></label>
+                    <label for="name" class="block font-medium">Nom complet <span class="text-red-400">*</span></label>
                     <input type="text" id="name" name="name" placeholder="Votre nom" required
-                        class="w-full p-3 border border-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50">
                 </div>
 
                 <div class="space-y-2">
-                    <label for="email" class="block font-medium">Email <span class="text-red-500">*</span></label>
+                    <label for="email" class="block font-medium">Email <span class="text-red-400">*</span></label>
                     <input type="email" id="email" name="email" placeholder="Votre email" required
-                        class="w-full p-3 border border-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50">
                 </div>
 
                 <div class="space-y-2">
-                    <label for="subject" class="block font-medium">Sujet <span class="text-red-500">*</span></label>
+                    <label for="subject" class="block font-medium">Sujet <span class="text-red-400">*</span></label>
                     <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required
-                        class="w-full p-3 border border-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50">
                 </div>
 
                 <div class="space-y-2">
-                    <label for="message" class="block font-medium">Message <span class="text-red-500">*</span></label>
+                    <label for="message" class="block font-medium">Message <span class="text-red-400">*</span></label>
                     <textarea id="message" name="message" rows="5" placeholder="Votre message" required
-                        class="w-full p-3 border border-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50"></textarea>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition font-medium">
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-smooth font-medium">
                     <i class="fas fa-paper-plane mr-2"></i>Envoyer le message
                 </button>
             </form>
 
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                <div class="bg-white bg-opacity-70 p-4 rounded-lg text-center">
-                    <div class="text-blue-600 text-2xl mb-2">
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10">
+                    <div class="text-blue-400 text-3xl mb-3">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <h3 class="font-semibold">Adresse</h3>
-                    <p class="text-gray-700">Lomé, Togo</p>
+                    <h3 class="font-semibold text-lg mb-1">Adresse</h3>
+                    <p class="text-white/80">Lomé, Togo</p>
                 </div>
 
-                <div class="bg-white bg-opacity-70 p-4 rounded-lg text-center">
-                    <div class="text-blue-600 text-2xl mb-2">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10">
+                    <div class="text-blue-400 text-3xl mb-3">
                         <i class="fas fa-phone-alt"></i>
                     </div>
-                    <h3 class="font-semibold">Téléphone</h3>
-                    <p class="text-gray-700 font-sans">+228 93 03 63 51</p>
+                    <h3 class="font-semibold text-lg mb-1">Téléphone</h3>
+                    <p class="text-white/80 font-sans">+228 93 03 63 51</p>
                 </div>
 
-                <div class="bg-white bg-opacity-70 p-4 rounded-lg text-center">
-                    <div class="text-blue-600 text-2xl mb-2">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10">
+                    <div class="text-blue-400 text-3xl mb-3">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <h3 class="font-semibold">Email</h3>
-                    <p class="text-gray-700">galekodzogeorge@gmail.com</p>
+                    <h3 class="font-semibold text-lg mb-1">Email</h3>
+                    <p class="text-white/80">galekodzogeorge@gmail.com</p>
                 </div>
             </div>
         </section>
@@ -474,6 +509,18 @@
                 const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
                 menuButton.setAttribute('aria-expanded', !isExpanded);
                 menuContent.classList.toggle("hidden");
+                
+                // Animation du menu
+                if (!isExpanded) {
+                    menuContent.style.opacity = '0';
+                    menuContent.style.transform = 'translateY(-10px)';
+                    menuContent.classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        menuContent.style.opacity = '1';
+                        menuContent.style.transform = 'translateY(0)';
+                    }, 10);
+                }
             });
 
             // Navigation entre sections
@@ -493,11 +540,18 @@
                         targetSection.classList.add("fade-in");
                     }, 10);
 
-                    menuContent.classList.add("hidden");
-                    menuButton.setAttribute('aria-expanded', 'false');
+                    // Animation de fermeture du menu
+                    menuContent.style.opacity = '0';
+                    menuContent.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        menuContent.classList.add("hidden");
+                        menuButton.setAttribute('aria-expanded', 'false');
+                    }, 300);
 
                     // Défilement doux vers la section
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
                 });
             });
 
@@ -507,8 +561,12 @@
             // Fermer le menu en cliquant à l'extérieur
             document.addEventListener('click', function (event) {
                 if (!menuButton.contains(event.target) && !menuContent.contains(event.target)) {
-                    menuContent.classList.add('hidden');
-                    menuButton.setAttribute('aria-expanded', 'false');
+                    menuContent.style.opacity = '0';
+                    menuContent.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        menuContent.classList.add('hidden');
+                        menuButton.setAttribute('aria-expanded', 'false');
+                    }, 300);
                 }
             });
 
