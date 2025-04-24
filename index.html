@@ -23,6 +23,19 @@
     <link rel="icon" href="/portfolio/images/favicon.ico" type="image/x-icon">
 
     <style>
+        /* Palette de couleurs modernes */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --text: #e2e2e2;
+            --text-dark: #1a1a2e;
+        }
+
         /* Animation pour les sections */
         @keyframes fadeIn {
             from {
@@ -48,21 +61,24 @@
         }
 
         .success {
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #34d399;
+            background-color: rgba(76, 201, 240, 0.2);
+            color: var(--light);
+            border: 1px solid var(--success);
+            backdrop-filter: blur(10px);
         }
 
         .error {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #f87171;
+            background-color: rgba(247, 37, 133, 0.2);
+            color: var(--light);
+            border: 1px solid var(--warning);
+            backdrop-filter: blur(10px);
         }
 
         /* Fond avec overlay pour meilleure lisibilité */
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                              url(https://images.unsplash.com/photo-1522252234503-e356532cafd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxjb2RlfGVufDB8MHx8fDE2OTQwOTg0MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080);
+            background-image: 
+                linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(63, 55, 201, 0.7) 100%),
+                url(https://images.unsplash.com/photo-1522252234503-e356532cafd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxjb2RlfGVufDB8MHx8fDE2OTQwOTg0MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -71,51 +87,197 @@
 
         /* Section styling */
         .section-container {
-            @apply rounded-xl shadow-2xl border border-white/50 bg-white/20 backdrop-blur-sm p-4 md:p-6 lg:p-8;
+            @apply rounded-xl shadow-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-6 md:p-8 lg:p-10;
+            transition: all 0.3s ease;
+        }
+
+        .section-container:hover {
+            box-shadow: 0 10px 25px -5px rgba(67, 97, 238, 0.3);
+            transform: translateY(-2px);
         }
 
         /* Smooth transitions */
         .transition-smooth {
             transition: all 0.3s ease-in-out;
         }
+
+        /* Effet de vague décoratif */
+        .wave-divider {
+            position: relative;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .wave-divider::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%234361ee'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%234361ee'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%234361ee'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+            transform: rotate(180deg);
+        }
+
+        /* Effet de particules subtil */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Barres de compétences améliorées */
+        .skill-bar {
+            height: 0.5rem;
+            border-radius: 0.25rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            box-shadow: 0 2px 10px rgba(67, 97, 238, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                            transparent, 
+                            rgba(255, 255, 255, 0.3), 
+                            transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Cartes de projet améliorées */
+        .project-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(72, 149, 239, 0.2) 100%);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.2) 0%, rgba(72, 149, 239, 0.3) 100%);
+        }
+
+        /* Boutons améliorés */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Effet de halo pour les icônes */
+        .icon-halo {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-halo::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(72, 149, 239, 0.2);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-halo:hover::after {
+            transform: scale(1.5);
+        }
     </style>
 </head>
 
-<body class="font-sans hero-bg min-h-screen text-white">
+<body class="font-sans hero-bg min-h-screen text-white relative overflow-x-hidden">
+    <!-- Effet de particules -->
+    <div class="particles" id="particles"></div>
+
     <!-- Navigation -->
     <nav class="fixed top-4 right-4 z-50">
         <button id="menuButton" aria-label="Menu" aria-expanded="false"
-            class="text-gray-700 p-2 rounded-lg bg-white/80 hover:bg-white transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#4B77D1"
+            class="text-gray-700 p-2 rounded-lg bg-white/90 hover:bg-white transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50 hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#4361ee"
                 aria-hidden="true">
                 <path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z" />
             </svg>
         </button>
         <div id="menuContent"
-            class="hidden absolute right-0 mt-2 text-xl sm:text-2xl w-64 sm:w-80 border border-white/30 rounded-xl shadow-2xl bg-white/80 backdrop-blur-lg space-y-1 text-center font-semibold">
+            class="hidden absolute right-0 mt-2 text-xl sm:text-2xl w-64 sm:w-80 border border-white/20 rounded-xl shadow-2xl bg-white/90 backdrop-blur-lg space-y-1 text-center font-semibold overflow-hidden">
             <a href="#" data-section="Home"
-                class="menu-link block px-4 py-3 hover:bg-slate-100/50 transition-smooth text-gray-700 rounded-lg">
-                <i class="fas fa-home mr-2"></i>Accueil
+                class="menu-link block px-4 py-3 hover:bg-slate-100/70 transition-smooth text-gray-700 rounded-lg hover:translate-x-2">
+                <i class="fas fa-home mr-2 text-blue-500"></i>Accueil
             </a>
             <a href="#" data-section="About"
-                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
-                <i class="fas fa-user mr-2"></i>À propos
+                class="menu-link block px-4 py-3 hover:bg-gray-100/70 transition-smooth text-gray-800 rounded-lg hover:translate-x-2">
+                <i class="fas fa-user mr-2 text-purple-500"></i>À propos
             </a>
             <a href="#" data-section="Skills"
-                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
-                <i class="fas fa-code mr-2"></i>Compétences
+                class="menu-link block px-4 py-3 hover:bg-gray-100/70 transition-smooth text-gray-800 rounded-lg hover:translate-x-2">
+                <i class="fas fa-code mr-2 text-green-500"></i>Compétences
             </a>
             <a href="#" data-section="Projets"
-                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
-                <i class="fas fa-project-diagram mr-2"></i>Projets
+                class="menu-link block px-4 py-3 hover:bg-gray-100/70 transition-smooth text-gray-800 rounded-lg hover:translate-x-2">
+                <i class="fas fa-project-diagram mr-2 text-yellow-500"></i>Projets
             </a>
             <a href="#" data-section="Certificat"
-                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
-                <i class="fas fa-certificate mr-2"></i>Certificats
+                class="menu-link block px-4 py-3 hover:bg-gray-100/70 transition-smooth text-gray-800 rounded-lg hover:translate-x-2">
+                <i class="fas fa-certificate mr-2 text-red-500"></i>Certificats
             </a>
             <a href="#" data-section="Contact"
-                class="menu-link block px-4 py-3 hover:bg-gray-100/50 transition-smooth text-gray-800 rounded-lg">
-                <i class="fas fa-envelope mr-2"></i>Contact
+                class="menu-link block px-4 py-3 hover:bg-gray-100/70 transition-smooth text-gray-800 rounded-lg hover:translate-x-2">
+                <i class="fas fa-envelope mr-2 text-cyan-500"></i>Contact
             </a>
         </div>
     </nav>
@@ -125,38 +287,41 @@
         <!-- Section Accueil -->
         <section id="Home" class="section-container fade-in">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0 relative">
+                    <div class="absolute inset-0 rounded-full border-4 border-white/30 animate-spin-slow" style="border-top-color: var(--primary); border-right-color: var(--accent); border-bottom-color: var(--secondary);"></div>
                     <img src="images/3.jpg" alt="GALE Kodzo George"
-                        class="rounded-full shadow-lg w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 border-4 border-white/80 hover:scale-105 transition-transform duration-300 mx-auto"
+                        class="rounded-full shadow-lg w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 border-4 border-white/80 hover:scale-105 transition-transform duration-300 mx-auto relative z-10"
                         loading="lazy" />
                 </div>
                 <div class="text-center md:text-left">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-2">GALE Kodzo George</h1>
-                    <p class="text-lg sm:text-xl md:text-2xl mb-1">Développeur Web et Mobile</p>
-                    <p class="text-base sm:text-lg text-white/90 mb-4">Étudiant à IAI Togo</p>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                        GALE Kodzo George
+                    </h1>
+                    <p class="text-lg sm:text-xl md:text-2xl mb-1 font-medium">Développeur Web et Mobile</p>
+                    <p class="text-base sm:text-lg text-white/90 mb-6">Étudiant à IAI Togo</p>
                     
                     <div class="flex flex-wrap justify-center md:justify-start gap-3 mb-6">
                         <a href="https://github.com/CodeVortex2" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center px-3 py-1 bg-black/30 hover:bg-black/50 rounded-full transition-smooth">
+                            class="inline-flex items-center px-4 py-2 bg-black/30 hover:bg-black/50 rounded-lg transition-smooth btn-primary">
                             <i class="fab fa-github mr-2"></i>GitHub
                         </a>
                         <a href="https://www.linkedin.com/in/geor-gale" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center px-3 py-1 bg-blue-600/80 hover:bg-blue-600 rounded-full transition-smooth">
+                            class="inline-flex items-center px-4 py-2 bg-blue-600/80 hover:bg-blue-600 rounded-lg transition-smooth btn-primary">
                             <i class="fab fa-linkedin mr-2"></i>LinkedIn
                         </a>
                         <a href="mailto:galekodzogeorge@gmail.com"
-                            class="inline-flex items-center px-3 py-1 bg-gray-700/80 hover:bg-gray-700 rounded-full transition-smooth">
+                            class="inline-flex items-center px-4 py-2 bg-gray-700/80 hover:bg-gray-700 rounded-lg transition-smooth btn-primary">
                             <i class="fas fa-envelope mr-2"></i>Email
                         </a>
                     </div>
                     
                     <div class="flex flex-wrap justify-center md:justify-start gap-4">
                         <a href="https://wa.me/+22893036351" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md transition-smooth">
+                            class="inline-flex items-center px-5 py-2.5 bg-green-600 hover:bg-green-700 rounded-lg transition-smooth btn-primary">
                             <i class="fab fa-whatsapp mr-2"></i>WhatsApp
                         </a>
                         <a href="/portfolio/images/CV.pdf" download
-                            class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition-smooth">
+                            class="inline-flex items-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg transition-smooth btn-primary">
                             <i class="fas fa-download mr-2"></i>Télécharger CV
                         </a>
                     </div>
@@ -164,13 +329,18 @@
             </div>
         </section>
 
+        <!-- Divider wave -->
+        <div class="wave-divider my-12"></div>
+
         <!-- Section À propos -->
         <section id="About" class="section-container hidden mt-8 fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">À propos de moi</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                À propos de moi
+            </h2>
             
             <div class="flex flex-col lg:flex-row gap-8 items-center">
                 <div class="flex-1">
-                    <p class="text-lg leading-relaxed">
+                    <p class="text-lg leading-relaxed text-white/90">
                         Je suis GALE Kodzo George, développeur web et mobile passionné par la création de solutions
                         numériques efficaces. Actuellement étudiant à l'IAI Togo, je me spécialise dans le développement avec des
                         technologies comme JavaScript, PHP, Python et C#.
@@ -181,19 +351,21 @@
                     </p>
                 </div>
                 <div class="flex-shrink-0">
-                    <img src="/images/1.JPG" alt="Photo de GALE Kodzo George"
-                        class="rounded-xl shadow-lg w-full max-w-xs h-auto" loading="lazy">
+                    <img src="images/1.JPG" alt="Photo de GALE Kodzo George"
+                        class="rounded-xl shadow-lg w-full max-w-xs h-auto border-2 border-white/20 hover:scale-105 transition-transform"
+                        loading="lazy">
                 </div>
             </div>
             
             <div class="flex flex-col lg:flex-row gap-8 items-center mt-12">
                 <div class="flex-shrink-0 order-last lg:order-first">
                     <img src="https://th.bing.com/th/id/OIP.O6lbidhxmYhqosxMFKpRrwHaFj?w=243&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-                        alt="Ligue de Lomé golfe athlétisme" class="rounded-xl shadow-lg w-full max-w-xs h-auto border-2"
+                        alt="Ligue de Lomé golfe athlétisme" 
+                        class="rounded-xl shadow-lg w-full max-w-xs h-auto border-2 border-white/20 hover:scale-105 transition-transform"
                         loading="lazy">
                 </div>
                 <div class="flex-1">
-                    <p class="text-lg leading-relaxed">
+                    <p class="text-lg leading-relaxed text-white/90">
                         Passionné par le développement web et mobile, je combine mes compétences techniques avec une forte
                         discipline acquise grâce à l'athlétisme. J'ai eu l'honneur de remporter une médaille de bronze à la
                         Ligue de Lomé Golfe Athlétisme et d'obtenir une quatrième place au Tournoi de la Fraternité à
@@ -207,78 +379,86 @@
 
         <!-- Section Compétences -->
         <section id="Skills" class="section-container hidden mt-8 fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Compétences</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                Compétences
+            </h2>
             
-            <div class="max-w-3xl mx-auto space-y-6">
+            <div class="max-w-3xl mx-auto space-y-8">
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-semibold text-lg">
-                            <i class="fab fa-html5 text-orange-500 mr-2"></i>HTML & CSS
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-lg flex items-center">
+                            <i class="fab fa-html5 text-orange-500 mr-3 text-2xl"></i>
+                            <span>HTML & CSS</span>
                         </span>
-                        <span class="text-sm font-medium">95%</span>
+                        <span class="text-sm font-medium bg-white/10 px-2 py-1 rounded">95%</span>
                     </div>
-                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
-                        <div class="bg-orange-500 h-2.5 rounded-full" style="width: 95%"></div>
+                    <div class="w-full bg-white/10 rounded-full h-2">
+                        <div class="skill-bar h-2 rounded-full" style="width: 95%"></div>
                     </div>
                 </div>
 
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-semibold text-lg">
-                            <i class="fab fa-js text-yellow-400 mr-2"></i>JavaScript
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-lg flex items-center">
+                            <i class="fab fa-js text-yellow-400 mr-3 text-2xl"></i>
+                            <span>JavaScript</span>
                         </span>
-                        <span class="text-sm font-medium">50%</span>
+                        <span class="text-sm font-medium bg-white/10 px-2 py-1 rounded">50%</span>
                     </div>
-                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
-                        <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 50%"></div>
+                    <div class="w-full bg-white/10 rounded-full h-2">
+                        <div class="skill-bar h-2 rounded-full" style="width: 50%"></div>
                     </div>
                 </div>
 
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-semibold text-lg">
-                            <i class="fab fa-php text-purple-500 mr-2"></i>PHP & MySQL
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-lg flex items-center">
+                            <i class="fab fa-php text-purple-500 mr-3 text-2xl"></i>
+                            <span>PHP & MySQL</span>
                         </span>
-                        <span class="text-sm font-medium">75%</span>
+                        <span class="text-sm font-medium bg-white/10 px-2 py-1 rounded">75%</span>
                     </div>
-                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
-                        <div class="bg-purple-500 h-2.5 rounded-full" style="width: 75%"></div>
+                    <div class="w-full bg-white/10 rounded-full h-2">
+                        <div class="skill-bar h-2 rounded-full" style="width: 75%"></div>
                     </div>
                 </div>
 
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-semibold text-lg">
-                            <i class="fab fa-python text-blue-500 mr-2"></i>Python
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-lg flex items-center">
+                            <i class="fab fa-python text-blue-500 mr-3 text-2xl"></i>
+                            <span>Python</span>
                         </span>
-                        <span class="text-sm font-medium">70%</span>
+                        <span class="text-sm font-medium bg-white/10 px-2 py-1 rounded">70%</span>
                     </div>
-                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
-                        <div class="bg-blue-500 h-2.5 rounded-full" style="width: 70%"></div>
+                    <div class="w-full bg-white/10 rounded-full h-2">
+                        <div class="skill-bar h-2 rounded-full" style="width: 70%"></div>
                     </div>
                 </div>
 
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-semibold text-lg">
-                            <i class="fas fa-paint-brush text-cyan-400 mr-2"></i>Tailwind CSS
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-lg flex items-center">
+                            <i class="fas fa-paint-brush text-cyan-400 mr-3 text-2xl"></i>
+                            <span>Tailwind CSS</span>
                         </span>
-                        <span class="text-sm font-medium">85%</span>
+                        <span class="text-sm font-medium bg-white/10 px-2 py-1 rounded">85%</span>
                     </div>
-                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
-                        <div class="bg-cyan-400 h-2.5 rounded-full" style="width: 85%"></div>
+                    <div class="w-full bg-white/10 rounded-full h-2">
+                        <div class="skill-bar h-2 rounded-full" style="width: 85%"></div>
                     </div>
                 </div>
 
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-semibold text-lg">
-                            <i class="fab fa-laravel text-red-500 mr-2"></i>Laravel
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-lg flex items-center">
+                            <i class="fab fa-laravel text-red-500 mr-3 text-2xl"></i>
+                            <span>Laravel</span>
                         </span>
-                        <span class="text-sm font-medium">40%</span>
+                        <span class="text-sm font-medium bg-white/10 px-2 py-1 rounded">40%</span>
                     </div>
-                    <div class="w-full bg-gray-200/30 rounded-full h-2.5">
-                        <div class="bg-red-500 h-2.5 rounded-full" style="width: 40%"></div>
+                    <div class="w-full bg-white/10 rounded-full h-2">
+                        <div class="skill-bar h-2 rounded-full" style="width: 40%"></div>
                     </div>
                 </div>
             </div>
@@ -286,12 +466,14 @@
 
         <!-- Section Projets -->
         <section id="Projets" class="section-container hidden mt-8 fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Mes Projets</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                Mes Projets
+            </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Projet Santé Togo -->
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
-                    <div class="text-red-400 text-4xl mb-4">
+                <div class="project-card p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="icon-halo text-red-400 text-4xl mb-4">
                         <i class="fas fa-heartbeat"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Santé Togo</h3>
@@ -299,56 +481,56 @@
                         Application web & mobile pour améliorer l'accès aux soins de santé au Togo : dossier médical
                         numérique, prise de rendez-vous, rappels de médicaments et gestion des dons de sang.
                     </p>
-                    <a href="#" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                    <a href="#" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth font-medium">
                         Voir le projet <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
 
                 <!-- Projet GénieScore -->
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
-                    <div class="text-yellow-400 text-4xl mb-4">
+                <div class="project-card p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="icon-halo text-yellow-400 text-4xl mb-4">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">GénieScore</h3>
                     <p class="text-white/80 mb-4">
                         Une application web pour la gestion des points dans les compétitions de génie en herbe. Elle permet d'initier des matchs, attribuer ou retirer des points, et de gérer un minuteur par rubrique.
                     </p>
-                    <a href="https://geniesorce.netlify.app/" target="_blank" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                    <a href="https://geniesorce.netlify.app/" target="_blank" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth font-medium">
                         Voir le projet <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
 
                 <!-- Projet Netflix -->
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
-                    <div class="text-blue-400 text-4xl mb-4">
+                <div class="project-card p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="icon-halo text-blue-400 text-4xl mb-4">
                         <i class="fas fa-film"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Page Netflix</h3>
                     <p class="text-white/80 mb-4">
                         Reproduction statique de la page d'accueil de Netflix avec HTML, CSS et JavaScript.
                     </p>
-                    <a href="https://shimmering-chimera-01950b.netlify.app/" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                    <a href="https://shimmering-chimera-01950b.netlify.app/" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth font-medium">
                         Voir le projet <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
 
                 <!-- Projet To-Do List -->
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
-                    <div class="text-green-400 text-4xl mb-4">
+                <div class="project-card p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="icon-halo text-green-400 text-4xl mb-4">
                         <i class="fas fa-tasks"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">To-Do List Dynamique</h3>
                     <p class="text-white/80 mb-4">
                         Application pour gérer des tâches avec ajout, modification et suppression en temps réel.
                     </p>
-                    <a href="#" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                    <a href="#" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth font-medium">
                         Voir le projet <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
 
                 <!-- Projet Tech Express -->
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
-                    <div class="text-blue-400 text-4xl mb-4">
+                <div class="project-card p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10">
+                    <div class="icon-halo text-blue-400 text-4xl mb-4">
                         <i class="fas fa-laptop"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Tech Express – Boutique en ligne</h3>
@@ -356,7 +538,7 @@
                         Site e-commerce moderne développé avec HTML, Bootstrap et JavaScript, dédié à la vente de
                         produits technologiques. Interface responsive, fluide et intuitive.
                     </p>
-                    <a href="https://techexpres.netlify.app/" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth">
+                    <a href="https://techexpres.netlify.app/" class="inline-flex items-center text-blue-300 hover:text-blue-400 transition-smooth font-medium">
                         Voir le projet <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
@@ -365,16 +547,21 @@
 
         <!-- Section Certificats -->
         <section id="Certificat" class="section-container hidden mt-8 fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Certificats</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                Certificats
+            </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Certificat SQL -->
                 <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="/images/sql_intermediate certificate_page-0001.jpg"
+                    <div class="overflow-hidden rounded-md relative">
+                        <img src="images/sql_intermediate certificate_page-0001.jpg"
                             alt="Certificat SQL (Intermediate)"
                             class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <button class="btn-primary px-3 py-1 rounded text-sm">Voir le certificat</button>
+                        </div>
                     </div>
                     <div class="mt-4">
                         <h3 class="text-xl font-semibold text-blue-300">SQL (Intermediate)</h3>
@@ -385,11 +572,14 @@
 
                 <!-- Certificat Python -->
                 <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="/images/CertificationPython.jpg"
+                    <div class="overflow-hidden rounded-md relative">
+                        <img src="images/CertificationPython.jpg"
                             alt="Certification rapidité de développement Python"
                             class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <button class="btn-primary px-3 py-1 rounded text-sm">Voir le certificat</button>
+                        </div>
                     </div>
                     <div class="mt-4">
                         <h3 class="text-xl font-semibold text-blue-300">Rapidité de développement Python</h3>
@@ -400,11 +590,14 @@
 
                 <!-- Certificat Linux -->
                 <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="/images/Partner-_NDG_Linux_Unhatched_certificate_georgegale825-gmail-com_3ce0e2ce-37c6-4f23-83a1-9d01e2b3c992_page-0001.jpg"
+                    <div class="overflow-hidden rounded-md relative">
+                        <img src="images/Partner-_NDG_Linux_Unhatched_certificate_georgegale825-gmail-com_3ce0e2ce-37c6-4f23-83a1-9d01e2b3c992_page-0001.jpg"
                             alt="Certificat NDG Linux Unhatched"
                             class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <button class="btn-primary px-3 py-1 rounded text-sm">Voir le certificat</button>
+                        </div>
                     </div>
                     <div class="mt-4">
                         <h3 class="text-xl font-semibold text-blue-300">NDG Linux Unhatched</h3>
@@ -415,11 +608,14 @@
 
                 <!-- Certificat CCNA -->
                 <div class="bg-white/10 hover:bg-white/20 p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer group border border-white/10">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="/images/Kodzo GeorgeGALE-IAI-TOGO_CCNA1_V-certificate (1)_page-0001.jpg"
+                    <div class="overflow-hidden rounded-md relative">
+                        <img src="images/Kodzo GeorgeGALE-IAI-TOGO_CCNA1_V-certificate (1)_page-0001.jpg"
                             alt="Certificat CCNAv7: Introduction aux réseaux"
                             class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <button class="btn-primary px-3 py-1 rounded text-sm">Voir le certificat</button>
+                        </div>
                     </div>
                     <div class="mt-4">
                         <h3 class="text-xl font-semibold text-blue-300">CCNAv7: Introduction aux réseaux</h3>
@@ -432,7 +628,9 @@
 
         <!-- Section Contact -->
         <section id="Contact" class="section-container hidden mt-8 fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Contactez-moi</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                Contactez-moi
+            </h2>
 
             <!-- Messages de statut -->
             <div id="statusMessage" class="status-message hidden"></div>
@@ -441,52 +639,52 @@
                 <div class="space-y-2">
                     <label for="name" class="block font-medium">Nom complet <span class="text-red-400">*</span></label>
                     <input type="text" id="name" name="name" placeholder="Votre nom" required
-                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50">
+                        class="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50 transition-all hover:border-white/40">
                 </div>
 
                 <div class="space-y-2">
                     <label for="email" class="block font-medium">Email <span class="text-red-400">*</span></label>
                     <input type="email" id="email" name="email" placeholder="Votre email" required
-                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50">
+                        class="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50 transition-all hover:border-white/40">
                 </div>
 
                 <div class="space-y-2">
                     <label for="subject" class="block font-medium">Sujet <span class="text-red-400">*</span></label>
                     <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required
-                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50">
+                        class="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50 transition-all hover:border-white/40">
                 </div>
 
                 <div class="space-y-2">
                     <label for="message" class="block font-medium">Message <span class="text-red-400">*</span></label>
                     <textarea id="message" name="message" rows="5" placeholder="Votre message" required
-                        class="w-full p-3 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50"></textarea>
+                        class="w-full p-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-white/50 transition-all hover:border-white/40"></textarea>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-smooth font-medium">
+                    class="w-full btn-primary text-white px-6 py-3 rounded-lg transition-smooth font-medium hover:scale-[1.02]">
                     <i class="fas fa-paper-plane mr-2"></i>Envoyer le message
                 </button>
             </form>
 
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10">
-                    <div class="text-blue-400 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10 hover:border-white/20">
+                    <div class="text-blue-400 text-3xl mb-3 icon-halo">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <h3 class="font-semibold text-lg mb-1">Adresse</h3>
                     <p class="text-white/80">Lomé, Togo</p>
                 </div>
 
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10">
-                    <div class="text-blue-400 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10 hover:border-white/20">
+                    <div class="text-blue-400 text-3xl mb-3 icon-halo">
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <h3 class="font-semibold text-lg mb-1">Téléphone</h3>
                     <p class="text-white/80 font-sans">+228 93 03 63 51</p>
                 </div>
 
-                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10">
-                    <div class="text-blue-400 text-3xl mb-3">
+                <div class="bg-white/10 hover:bg-white/20 p-6 rounded-lg text-center transition-all border border-white/10 hover:border-white/20">
+                    <div class="text-blue-400 text-3xl mb-3 icon-halo">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h3 class="font-semibold text-lg mb-1">Email</h3>
@@ -499,6 +697,31 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Création des particules
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Taille aléatoire entre 2px et 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Position aléatoire
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Animation aléatoire
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s linear infinite`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+
             const menuButton = document.getElementById("menuButton");
             const menuContent = document.getElementById("menuContent");
             const sections = document.querySelectorAll(".section");
