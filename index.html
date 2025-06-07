@@ -17,6 +17,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <style>
         :root {
             --primary: #6366f1;
@@ -52,7 +55,7 @@
             padding: 0 20px;
         }
 
-        /* Animations */
+        /* Animations personnalisées */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -65,7 +68,7 @@
 
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
 
@@ -77,7 +80,7 @@
 
         @keyframes floatBubble {
             0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
 
@@ -85,6 +88,33 @@
             0% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
             50% { text-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
             100% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
         }
 
         .section {
@@ -106,10 +136,11 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.005);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
@@ -161,7 +192,7 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
         }
 
@@ -182,22 +213,33 @@
 
         .btn-primary i {
             margin-right: 10px;
+            transition: transform 0.3s ease;
         }
 
-        /* Navigation */
+        .btn-primary:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Navigation améliorée */
         nav {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 50px;
             padding: 10px;
             display: flex;
             gap: 10px;
             z-index: 100;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        nav:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transform: translateX(-50%) scale(1.05);
         }
 
         .nav-item {
@@ -209,22 +251,42 @@
             justify-content: center;
             color: var(--text-light);
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
         .nav-item:hover {
             color: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
         }
 
         .nav-item.active {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.5);
         }
 
-        /* Hero section - MODIFIÉ */
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .nav-item:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        /* Hero section améliorée */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -267,6 +329,7 @@
             flex: 1;
             display: flex;
             justify-content: center;
+            position: relative;
         }
 
         .profile-img {
@@ -278,11 +341,25 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
             animation: float 4s ease-in-out infinite, pulse 3s ease-in-out infinite alternate;
             transition: var(--transition);
+            position: relative;
+            z-index: 2;
         }
 
         .profile-img:hover {
             transform: scale(1.05) rotate(5deg);
             box-shadow: 0 25px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.1;
+            z-index: 1;
+            animation: rotate 15s linear infinite;
         }
 
         .hero h1 {
@@ -340,48 +417,54 @@
             animation-delay: 0.9s;
         }
 
-        /* Bulles décoratives */
+        /* Bulles décoratives améliorées */
         .bubble {
             position: absolute;
             border-radius: 50%;
-            background: rgba(99, 102, 241, 0.1);
-            animation: floatBubble 6s ease-in-out infinite;
+            background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            animation: floatBubble 8s ease-in-out infinite;
             z-index: 0;
+            filter: blur(1px);
+            opacity: 0.8;
         }
 
         .bubble:nth-child(1) {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             top: 10%;
             left: 5%;
             animation-delay: 0s;
+            background: linear-gradient(45deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.1));
         }
 
         .bubble:nth-child(2) {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             bottom: 15%;
             right: 10%;
             animation-delay: 2s;
+            background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.15));
         }
 
         .bubble:nth-child(3) {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             top: 60%;
             left: 15%;
             animation-delay: 4s;
+            background: linear-gradient(45deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.1));
         }
 
         .bubble:nth-child(4) {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             top: 20%;
             right: 20%;
             animation-delay: 1s;
+            background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.2));
         }
 
-        /* Effet de vague */
+        /* Effet de vague amélioré */
         .wave {
             position: absolute;
             bottom: 0;
@@ -392,9 +475,10 @@
             background-size: cover;
             background-repeat: no-repeat;
             z-index: 2;
+            animation: wave 10s ease-in-out infinite alternate;
         }
 
-        /* Section titles */
+        /* Section titles améliorés */
         .section-title {
             text-align: center;
             margin-bottom: 50px;
@@ -403,19 +487,24 @@
 
         .section-title h2 {
             font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
         }
 
-        .section-title:after {
+        .section-title h2::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 80px;
             height: 4px;
             background: linear-gradient(to right, var(--primary), var(--accent));
-            margin: 15px auto 0;
             border-radius: 2px;
+            animation: pulse 2s infinite;
         }
 
-        /* About section */
+        /* About section améliorée */
         .about-content {
             display: flex;
             flex-direction: column;
@@ -446,9 +535,15 @@
             border-radius: 15px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             border: 5px solid white;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
-        /* Skills section - MODIFIÉ */
+        .about-img:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Skills section améliorée */
         .skills-container {
             display: flex;
             flex-direction: column;
@@ -460,6 +555,12 @@
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skills-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .skills-category h3 {
@@ -481,54 +582,96 @@
             border-radius: 2px;
         }
 
-        .skills-grid {
+        .skills-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 40px;
+            gap: 20px;
         }
 
         .skill-item {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: transform 0.3s ease;
         }
 
-        /* Progress circles */
-        .progress-circle {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            margin: 0 auto 20px;
+        .skill-item:hover {
+            transform: translateX(5px);
         }
 
-        .circle-bg {
-            fill: none;
-            stroke: #e2e8f0;
-            stroke-width: 8;
-        }
-
-        .circle-progress {
-            fill: none;
-            stroke: var(--primary);
-            stroke-width: 8;
-            stroke-linecap: round;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-            stroke-dasharray: 0, 100;
-            transition: stroke-dasharray 1.5s ease-out;
-        }
-
-        .circle-text {
-            font-size: 1.5rem;
-            font-weight: 600;
-            fill: var(--dark);
+        .skill-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .skill-name {
-            text-align: center;
-            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
             color: var(--dark);
         }
 
-        /* Projects section */
+        .skill-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover .skill-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .skill-percent {
+            font-weight: 600;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover .skill-percent {
+            transform: scale(1.1);
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Projects section améliorée */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -539,35 +682,73 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(226, 232, 240, 0.7);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .project-img {
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-icon {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
         }
 
         .project-body {
             padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-title {
             font-size: 1.3rem;
             margin-bottom: 10px;
             color: var(--dark);
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--primary);
         }
 
         .project-description {
             margin-bottom: 15px;
             color: var(--text-light);
             line-height: 1.6;
+            flex: 1;
         }
 
         .tech-tags {
@@ -584,6 +765,12 @@
             border-radius: 20px;
             font-size: 0.8rem;
             color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .tech-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
         }
 
         .project-link {
@@ -591,12 +778,12 @@
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .project-link i {
             margin-left: 8px;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
 
         .project-link:hover {
@@ -607,7 +794,7 @@
             transform: translateX(5px);
         }
 
-        /* Certifications section */
+        /* Certifications section améliorée */
         .certificates-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -618,19 +805,25 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(226, 232, 240, 0.7);
+            position: relative;
         }
 
         .certificate-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .certificate-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .certificate-card:hover .certificate-img {
+            transform: scale(1.05);
         }
 
         .certificate-body {
@@ -641,6 +834,11 @@
             font-size: 1.3rem;
             margin-bottom: 10px;
             color: var(--dark);
+            transition: color 0.3s ease;
+        }
+
+        .certificate-card:hover .certificate-title {
+            color: var(--primary);
         }
 
         .certificate-issuer {
@@ -665,7 +863,7 @@
             margin-right: 8px;
         }
 
-        /* Contact section */
+        /* Contact section améliorée */
         .contact-content {
             display: flex;
             flex-wrap: wrap;
@@ -679,6 +877,7 @@
 
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .form-label {
@@ -696,13 +895,14 @@
             border-radius: 8px;
             color: var(--text);
             font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
         }
 
         textarea.form-input {
@@ -723,6 +923,11 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
         }
 
         .contact-item i {
@@ -730,6 +935,11 @@
             color: var(--primary);
             margin-right: 15px;
             margin-top: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: scale(1.2);
         }
 
         .contact-item-content h4 {
@@ -755,8 +965,25 @@
             border-radius: 50%;
             background: white;
             color: var(--primary);
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .social-icon:hover::before {
+            left: 100%;
         }
 
         .social-icon:hover {
@@ -765,12 +992,23 @@
             color: var(--accent);
         }
 
-        /* Footer */
+        /* Footer amélioré */
         footer {
             padding: 50px 0 30px;
             text-align: center;
             background: white;
             margin-top: 50px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
         .footer-links {
@@ -783,11 +1021,27 @@
 
         .footer-link {
             color: var(--text-light);
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
 
         .footer-link:hover {
             color: var(--primary);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
         }
 
         .footer-social {
@@ -800,16 +1054,36 @@
         .footer-social a {
             color: var(--text-light);
             font-size: 1.5rem;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
         .footer-social a:hover {
             color: var(--primary);
+            transform: translateY(-5px) scale(1.2);
         }
 
         .copyright {
             color: var(--text-light);
             margin-bottom: 0;
+        }
+
+        /* Effet de particules */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
         }
 
         /* Responsive */
@@ -929,7 +1203,10 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section - MODIFIÉ -->
+    <!-- Effet de particules -->
+    <div class="particles" id="particles-js"></div>
+    
+    <!-- Hero Section -->
     <section id="home" class="hero section visible">
         <!-- Bulles décoratives -->
         <div class="bubble"></div>
@@ -1032,207 +1309,258 @@
         </div>
     </section>
 
-    <!-- Skills Section - MODIFIÉ -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="glass-card">
-                <div class="section-title">
-                    <h2 class="gradient-text">Mes Compétences</h2>
+    <!-- Skills Section - Version améliorée -->
+<section id="skills" class="section">
+    <div class="container">
+        <div class="glass-card">
+            <div class="section-title">
+                <h2 class="gradient-text">Mes Compétences</h2>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Frontend -->
+                <div class="skills-category">
+                    <h3>Frontend</h3>
+                    <div class="skills-list">
+                        <!-- HTML & CSS -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(228, 77, 38, 0.1); color: #E44D26;">
+                                        <i class="fab fa-html5"></i>
+                                    </div>
+                                    HTML & CSS
+                                </div>
+                                <span class="skill-percent" style="color: #E44D26;">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%; background: linear-gradient(to right, #E44D26, #F16529);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- JavaScript -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(240, 219, 79, 0.1); color: #F0DB4F;">
+                                        <i class="fab fa-js"></i>
+                                    </div>
+                                    JavaScript
+                                </div>
+                                <span class="skill-percent" style="color: #F0DB4F;">50%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 50%; background: linear-gradient(to right, #F0DB4F, #F7DF1E);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tailwind CSS -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(56, 178, 172, 0.1); color: #38B2AC;">
+                                        <i class="fas fa-paint-brush"></i>
+                                    </div>
+                                    Tailwind CSS
+                                </div>
+                                <span class="skill-percent" style="color: #38B2AC;">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%; background: linear-gradient(to right, #38B2AC, #06B6D4);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bootstrap -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(121, 82, 179, 0.1); color: #7952B3;">
+                                        <i class="fab fa-bootstrap"></i>
+                                    </div>
+                                    Bootstrap
+                                </div>
+                                <span class="skill-percent" style="color: #7952B3;">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%; background: linear-gradient(to right, #7952B3, #563D7C);"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="skills-container">
-                    <!-- Frontend -->
-                    <div class="skills-category">
-                        <h3>Frontend</h3>
-                        <div class="skills-grid">
-                            <!-- HTML & CSS -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="95, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">95%</text>
-                                    </svg>
-                                </div>
-                                <h3 class="skill-name">
-                                    <i class="fab fa-html5" style="color: #E44D26;"></i>
-                                    <i class="fab fa-css3-alt" style="color: #264DE4;"></i>
-                                    HTML & CSS
-                                </h3>
-                            </div>
-                            
-                            <!-- JavaScript -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="50, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">50%</text>
-                                    </svg>
-                                </div>
-                                <h3 class="skill-name">
-                                    <i class="fab fa-js" style="color: #F0DB4F;"></i>
-                                    JavaScript
-                                </h3>
-                            </div>
-                            
-                            <!-- Tailwind CSS -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="85, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">85%</text>
-                                    </svg>
-                                </div>
-                                <h3 class="skill-name">
-                                    <i class="fas fa-paint-brush" style="color: #38B2AC;"></i>
-                                    Tailwind CSS
-                                </h3>
-                            </div>
-                            
-                            <!-- Bootstrap -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="80, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">80%</text>
-                                    </svg>
-                                </div>
-                                <h3 class="skill-name">
-                                    <i class="fab fa-bootstrap" style="color: #7952B3;"></i>
-                                    Bootstrap
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Backend -->
-                    <div class="skills-category">
-                        <h3>Backend</h3>
-                        <div class="skills-grid">
-                            <!-- PHP & MySQL -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="75, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">75%</text>
-                                    </svg>
-                                </div>
-                                <h3 class="skill-name">
-                                    <i class="fab fa-php" style="color: #777BB3;"></i>
+                <!-- Backend -->
+                <div class="skills-category">
+                    <h3>Backend</h3>
+                    <div class="skills-list">
+                        <!-- PHP & MySQL -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(119, 123, 179, 0.1); color: #777BB3;">
+                                        <i class="fab fa-php"></i>
+                                    </div>
                                     PHP & MySQL
-                                </h3>
-                            </div>
-                            
-                            <!-- Python -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="70, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">70%</text>
-                                    </svg>
                                 </div>
-                                <h3 class="skill-name">
-                                    <i class="fab fa-python" style="color: #3776AB;"></i>
+                                <span class="skill-percent" style="color: #777BB3;">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%; background: linear-gradient(to right, #777BB3, #4F5B93);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Python -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(55, 118, 171, 0.1); color: #3776AB;">
+                                        <i class="fab fa-python"></i>
+                                    </div>
                                     Python
-                                </h3>
-                            </div>
-                            
-                            <!-- Laravel -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="40, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">40%</text>
-                                    </svg>
                                 </div>
-                                <h3 class="skill-name">
-                                    <i class="fab fa-laravel" style="color: #FF2D20;"></i>
+                                <span class="skill-percent" style="color: #3776AB;">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%; background: linear-gradient(to right, #3776AB, #306998);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Laravel -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(255, 45, 32, 0.1); color: #FF2D20;">
+                                        <i class="fab fa-laravel"></i>
+                                    </div>
                                     Laravel
-                                </h3>
-                            </div>
-                            
-                            <!-- C# -->
-                            <div class="skill-item">
-                                <div class="progress-circle">
-                                    <svg viewBox="0 0 36 36">
-                                        <path class="circle-bg" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <path class="circle-progress" stroke-dasharray="60, 100" d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                        <text x="3.5" y="25.5" class="circle-text" style="font-size: medium;">60%</text>
-                                    </svg>
                                 </div>
-                                <h3 class="skill-name">
-                                    <i class="fab fa-microsoft" style="color: #5E5E5E;"></i>
+                                <span class="skill-percent" style="color: #FF2D20;">40%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 40%; background: linear-gradient(to right, #FF2D20, #F05340);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- C# -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(94, 94, 94, 0.1); color: #5E5E5E;">
+                                        <i class="fab fa-microsoft"></i>
+                                    </div>
                                     C#
-                                </h3>
+                                </div>
+                                <span class="skill-percent" style="color: #5E5E5E;">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 60%; background: linear-gradient(to right, #5E5E5E, #3E3E3E);"></div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Outils -->
-                    <div class="skills-category">
-                        <h3>Outils & Plateformes</h3>
-                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-                            <div style="text-align: center;">
-                                <div class="social-icon">
-                                    <i class="fab fa-git-alt" style="font-size: 1.5rem;"></i>
+                </div>
+                
+                <!-- Mobile -->
+                <div class="skills-category">
+                    <h3>Mobile</h3>
+                    <div class="skills-list">
+                        <!-- Flutter -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(97, 202, 250, 0.1); color: #61CAFA;">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    Flutter
                                 </div>
-                                <p style="font-weight: 500; margin-top: 10px;">Git</p>
+                                <span class="skill-percent" style="color: #61CAFA;">75%</span>
                             </div>
-                            <div style="text-align: center;">
-                                <div class="social-icon">
-                                    <i class="fab fa-github" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <p style="font-weight: 500; margin-top: 10px;">GitHub</p>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%; background: linear-gradient(to right, #61CAFA, #42A5F5);"></div>
                             </div>
-                            <div style="text-align: center;">
-                                <div class="social-icon">
-                                    <i class="fab fa-wordpress" style="font-size: 1.5rem;"></i>
+                        </div>
+                        
+                        <!-- Dart -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(0, 163, 231, 0.1); color: #00A3E7;">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    Dart
                                 </div>
-                                <p style="font-weight: 500; margin-top: 10px;">WordPress</p>
+                                <span class="skill-percent" style="color: #00A3E7;">70%</span>
                             </div>
-                            <div style="text-align: center;">
-                                <div class="social-icon">
-                                    <i class="fab fa-figma" style="font-size: 1.5rem;"></i>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%; background: linear-gradient(to right, #00A3E7, #0085C9);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Outils -->
+                <div class="skills-category">
+                    <h3>Outils & Plateformes</h3>
+                    <div class="skills-list">
+                        <!-- Git -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(240, 81, 51, 0.1); color: #F05133;">
+                                        <i class="fab fa-git-alt"></i>
+                                    </div>
+                                    Git
                                 </div>
-                                <p style="font-weight: 500; margin-top: 10px;">Figma</p>
+                                <span class="skill-percent" style="color: #F05133;">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%; background: linear-gradient(to right, #F05133, #E44D30);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- GitHub -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(36, 41, 46, 0.1); color: #24292E;">
+                                        <i class="fab fa-github"></i>
+                                    </div>
+                                    GitHub
+                                </div>
+                                <span class="skill-percent" style="color: #24292E;">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%; background: linear-gradient(to right, #24292E, #181D20);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- WordPress -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(33, 117, 155, 0.1); color: #21759B;">
+                                        <i class="fab fa-wordpress"></i>
+                                    </div>
+                                    WordPress
+                                </div>
+                                <span class="skill-percent" style="color: #21759B;">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 65%; background: linear-gradient(to right, #21759B, #195E7F);"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Figma -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">
+                                    <div class="skill-icon" style="background-color: rgba(162, 89, 255, 0.1); color: #A259FF;">
+                                        <i class="fab fa-figma"></i>
+                                    </div>
+                                    Figma
+                                </div>
+                                <span class="skill-percent" style="color: #A259FF;">55%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 55%; background: linear-gradient(to right, #A259FF, #8C4AFF);"></div>
                             </div>
                         </div>
                     </div>
@@ -1241,7 +1569,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - NOUVELLE VERSION -->
     <section id="projects" class="section">
         <div class="container">
             <div class="glass-card">
@@ -1253,7 +1581,9 @@
                 <div class="projects-grid">
                     <!-- Projet Santé Togo -->
                     <div class="project-card">
-                        <img src="images/sante-togo.jpg" alt="Santé Togo" class="project-img">
+                        <div class="project-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
                         <div class="project-body">
                             <h3 class="project-title">Santé Togo</h3>
                             <p class="project-description">
@@ -1278,7 +1608,9 @@
                     
                     <!-- Projet GénieScore -->
                     <div class="project-card">
-                        <img src="images/genius.png" alt="GénieScore" class="project-img">
+                        <div class="project-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
                         <div class="project-body">
                             <h3 class="project-title">GénieScore</h3>
                             <p class="project-description">
@@ -1300,7 +1632,9 @@
                     
                     <!-- Projet Tech Express -->
                     <div class="project-card">
-                        <img src="images/teche.png" alt="Tech Express" class="project-img">
+                        <div class="project-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
                         <div class="project-body">
                             <h3 class="project-title">Tech Express</h3>
                             <p class="project-description">
@@ -1522,6 +1856,40 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Effet de particules
+            function createParticles() {
+                const particlesContainer = document.querySelector('.particles');
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Position aléatoire
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    
+                    // Taille aléatoire
+                    const size = Math.random() * 10 + 5;
+                    
+                    // Durée d'animation aléatoire
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    // Appliquer les styles
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            createParticles();
+            
             // Effet de parallaxe pour les bulles
             window.addEventListener('mousemove', function(e) {
                 const bubbles = document.querySelectorAll('.bubble');
@@ -1579,12 +1947,18 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Animate progress circles when skills section is visible
+                        // Ajouter une classe pour déclencher les animations CSS
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                        
+                        // Animate progress bars when skills section is visible
                         if (entry.target.id === 'skills') {
-                            const circles = document.querySelectorAll('.circle-progress');
-                            circles.forEach(circle => {
-                                const value = circle.getAttribute('stroke-dasharray').split(',')[0];
-                                circle.style.strokeDasharray = `${value}, 100`;
+                            const progressBars = document.querySelectorAll('.skill-progress');
+                            progressBars.forEach(bar => {
+                                const width = bar.style.width;
+                                bar.style.width = '0';
+                                setTimeout(() => {
+                                    bar.style.width = width;
+                                }, 100);
                             });
                         }
                     }
@@ -1605,6 +1979,12 @@
                         navItem.classList.remove('active');
                     });
                     this.classList.add('active');
+                    
+                    // Effet de vague
+                    this.classList.add('animate__animated', 'animate__pulse');
+                    setTimeout(() => {
+                        this.classList.remove('animate__animated', 'animate__pulse');
+                    }, 1000);
                     
                     // Faire défiler jusqu'à la section
                     document.getElementById(sectionId).scrollIntoView({
@@ -1656,11 +2036,34 @@
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    // Ici vous pourriez ajouter le code pour envoyer le formulaire
-                    alert('Formulaire envoyé! (Fonctionnalité à implémenter)');
-                    this.reset();
+                    
+                    // Animation de succès
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé!';
+                    submitBtn.style.backgroundColor = '#10B981';
+                    
+                    // Réinitialiser après 3 secondes
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Envoyer le message';
+                        submitBtn.style.backgroundColor = '';
+                        this.reset();
+                    }, 3000);
                 });
             }
+            
+            // Effet de survol sur les cartes de projet
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const icon = card.querySelector('.project-icon i');
+                    icon.classList.add('animate__animated', 'animate__pulse');
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    const icon = card.querySelector('.project-icon i');
+                    icon.classList.remove('animate__animated', 'animate__pulse');
+                });
+            });
         });
     </script>
 </body>
