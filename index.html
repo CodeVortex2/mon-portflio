@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | GALE Kodzo George - Développeur Web et Mobile</title>
-    <meta name="description" content="Portfolio de GALE Kodzo George, développeur web et mobile spécialisé en JavaScript, PHP, Python et Tailwind CSS. Découvrez mes projets et compétences.">
+    <meta name="description"
+        content="Portfolio de GALE Kodzo George, développeur web et mobile spécialisé en JavaScript, PHP, Python et Tailwind CSS. Découvrez mes projets et compétences.">
     <meta name="keywords" content="développeur web, développeur mobile, portfolio, JavaScript, PHP, Python, Togo">
     <meta name="author" content="GALE Kodzo George">
-    
+
     <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <style>
         :root {
             --primary: #6366f1;
@@ -57,64 +60,153 @@
 
         /* Animations personnalisées */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         @keyframes floatBubble {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
         }
 
         @keyframes textShadow {
-            0% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
-            50% { text-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
-            100% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
+            0% {
+                text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            }
+
+            100% {
+                text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+            }
         }
 
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes wave {
-            0% { transform: rotate(0deg); }
-            10% { transform: rotate(14deg); }
-            20% { transform: rotate(-8deg); }
-            30% { transform: rotate(14deg); }
-            40% { transform: rotate(-4deg); }
-            50% { transform: rotate(10deg); }
-            60% { transform: rotate(0deg); }
-            100% { transform: rotate(0deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            10% {
+                transform: rotate(14deg);
+            }
+
+            20% {
+                transform: rotate(-8deg);
+            }
+
+            30% {
+                transform: rotate(14deg);
+            }
+
+            40% {
+                transform: rotate(-4deg);
+            }
+
+            50% {
+                transform: rotate(10deg);
+            }
+
+            60% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
         }
 
         @keyframes ripple {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(2.5); opacity: 0; }
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
 
         .section {
@@ -144,7 +236,10 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             color: var(--dark);
             font-weight: 600;
             line-height: 1.2;
@@ -662,13 +757,18 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
             animation: shine 2s infinite;
         }
 
         @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         /* Projects section améliorée */
@@ -1091,11 +1191,11 @@
             .hero h1 {
                 font-size: 3rem;
             }
-            
+
             .hero h2 {
                 font-size: 1.8rem;
             }
-            
+
             .profile-img {
                 width: 300px;
                 height: 300px;
@@ -1106,67 +1206,68 @@
             .section {
                 padding: 60px 0;
             }
-            
+
             .hero {
                 padding-top: 80px;
             }
-            
+
             .hero-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .hero-text {
                 text-align: center;
             }
-            
+
             .hero h2::after {
                 left: 50%;
                 transform: translateX(-50%);
             }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .hero h2 {
                 font-size: 1.5rem;
             }
-            
+
             .hero p {
                 font-size: 1rem;
                 margin-left: auto;
                 margin-right: auto;
             }
-            
+
             .profile-img {
                 width: 250px;
                 height: 250px;
             }
-            
+
             .glass-card {
                 padding: 25px;
             }
-            
+
             nav {
                 bottom: 10px;
                 padding: 8px;
             }
-            
+
             .nav-item {
                 width: 42px;
                 height: 42px;
                 font-size: 0.9rem;
             }
-            
-            .about-img, .about-text {
+
+            .about-img,
+            .about-text {
                 flex: 100%;
             }
-            
+
             .about-img {
                 margin: 0 auto;
             }
-            
+
             .bubble {
                 display: none;
             }
@@ -1176,25 +1277,26 @@
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .hero h2 {
                 font-size: 1.2rem;
             }
-            
+
             .profile-img {
                 width: 200px;
                 height: 200px;
             }
-            
+
             .btn-primary {
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
-            
-            .projects-grid, .certificates-grid {
+
+            .projects-grid,
+            .certificates-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .contact-content {
                 flex-direction: column;
                 gap: 30px;
@@ -1202,10 +1304,11 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Effet de particules -->
     <div class="particles" id="particles-js"></div>
-    
+
     <!-- Hero Section -->
     <section id="home" class="hero section visible">
         <!-- Bulles décoratives -->
@@ -1213,32 +1316,35 @@
         <div class="bubble"></div>
         <div class="bubble"></div>
         <div class="bubble"></div>
-        
+
         <div class="container">
             <div class="hero-content">
                 <div class="profile-container">
                     <img src="images/3.jpg" alt="GALE Kodzo George" class="profile-img">
                 </div>
-                
+
                 <div class="hero-text">
                     <h1>GALE Kodzo George</h1>
                     <h2 class="gradient-text">Développeur Web et Mobile</h2>
                     <p>Créateur de solutions numériques innovantes et performantes</p>
-                    
+
                     <div class="btn-container">
                         <a href="https://github.com/CodeVortex2" target="_blank" class="btn-primary">
                             <i class="fab fa-github"></i> GitHub
                         </a>
-                        <a href="https://www.linkedin.com/in/geor-gale" target="_blank" class="btn-primary" style="background: linear-gradient(135deg, #0A66C2, #0A66C2); box-shadow: 0 4px 15px rgba(10, 102, 194, 0.3);">
+                        <a href="https://www.linkedin.com/in/geor-gale" target="_blank" class="btn-primary"
+                            style="background: linear-gradient(135deg, #0A66C2, #0A66C2); box-shadow: 0 4px 15px rgba(10, 102, 194, 0.3);">
                             <i class="fab fa-linkedin"></i> LinkedIn
                         </a>
-                        <a href="mailto:galekodzogeorge@gmail.com" class="btn-primary" style="background: linear-gradient(135deg, #EA4335, #EA4335); box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);">
+                        <a href="mailto:galekodzogeorge@gmail.com" class="btn-primary"
+                            style="background: linear-gradient(135deg, #EA4335, #EA4335); box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);">
                             <i class="fas fa-envelope"></i> Email
                         </a>
                     </div>
-                    
+
                     <div class="btn-container" style="animation-delay: 1.1s;">
-                        <a href="https://wa.me/+22893036351" target="_blank" class="btn-primary" style="background: linear-gradient(135deg, #25D366, #25D366); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+                        <a href="https://wa.me/+22893036351" target="_blank" class="btn-primary"
+                            style="background: linear-gradient(135deg, #25D366, #25D366); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
                         <a href="/portfolio/images/CV.pdf" download class="btn-primary">
@@ -1248,7 +1354,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="wave"></div>
     </section>
 
@@ -1259,46 +1365,54 @@
                 <div class="section-title">
                     <h2 class="gradient-text">À propos de moi</h2>
                 </div>
-                
+
                 <div class="about-content">
                     <div class="about-row">
                         <div class="about-text">
                             <p>
-                                Je suis <strong>GALE Kodzo George</strong>, développeur web et mobile passionné par la création de solutions
-                                numériques innovantes et performantes. Actuellement étudiant à l'<strong>IAI Togo</strong>, je me spécialise dans le développement full-stack avec des
-                                technologies modernes comme <strong>JavaScript, PHP, Python, Tailwind CSS et C#</strong>.
+                                Je suis <strong>GALE Kodzo George</strong>, développeur web et mobile passionné par la
+                                création de solutions
+                                numériques innovantes et performantes. Actuellement étudiant à l'<strong>IAI
+                                    Togo</strong>, je me spécialise dans le développement full-stack avec des
+                                technologies modernes comme <strong>JavaScript, PHP, Python, Tailwind CSS et
+                                    C#</strong>.
                             </p>
                             <p>
-                                Mon approche combine <strong>rigueur technique</strong> et <strong>créativité</strong> pour produire des applications
+                                Mon approche combine <strong>rigueur technique</strong> et <strong>créativité</strong>
+                                pour produire des applications
                                 robustes, sécurisées et centrées sur l'expérience utilisateur.
                             </p>
                             <div style="display: flex; gap: 15px; margin-top: 30px;">
                                 <a href="#skills" class="btn-primary" style="padding: 10px 25px;">
                                     Mes Compétences
                                 </a>
-                                <a href="#projects" class="btn-primary" style="background: white; color: var(--primary); border: 1px solid var(--primary); box-shadow: none; padding: 10px 25px;">
+                                <a href="#projects" class="btn-primary"
+                                    style="background: white; color: var(--primary); border: 1px solid var(--primary); box-shadow: none; padding: 10px 25px;">
                                     Mes Projets
                                 </a>
                             </div>
                         </div>
                         <img src="images/1.JPG" alt="Photo de GALE Kodzo George" class="about-img">
                     </div>
-                    
+
                     <div class="about-row" style="flex-wrap: wrap-reverse;">
-                        <img src="https://th.bing.com/th/id/OIP.O6lbidhxmYhqosxMFKpRrwHaFj?w=243&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7" 
-                             alt="Ligue de Lomé golfe athlétisme" class="about-img">
+                        <img src="https://th.bing.com/th/id/OIP.O6lbidhxmYhqosxMFKpRrwHaFj?w=243&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                            alt="Ligue de Lomé golfe athlétisme" class="about-img">
                         <div class="about-text">
                             <h3 class="gradient-text">Passion & Discipline</h3>
                             <p>
-                                Mon parcours d'<strong>athlète de haut niveau</strong> a forgé ma personnalité et ma manière d'aborder les défis techniques.
+                                Mon parcours d'<strong>athlète de haut niveau</strong> a forgé ma personnalité et ma
+                                manière d'aborder les défis techniques.
                             </p>
                             <ul style="margin-bottom: 20px; padding-left: 20px;">
                                 <li style="margin-bottom: 10px; position: relative; padding-left: 25px;">
-                                    <i class="fas fa-medal" style="color: #F59E0B; position: absolute; left: 0; top: 5px;"></i>
+                                    <i class="fas fa-medal"
+                                        style="color: #F59E0B; position: absolute; left: 0; top: 5px;"></i>
                                     Médaille de bronze à la Ligue de Lomé Golfe Athlétisme
                                 </li>
                                 <li style="position: relative; padding-left: 25px;">
-                                    <i class="fas fa-trophy" style="color: #64748B; position: absolute; left: 0; top: 5px;"></i>
+                                    <i class="fas fa-trophy"
+                                        style="color: #64748B; position: absolute; left: 0; top: 5px;"></i>
                                     4ème place au Tournoi de la Fraternité à Ouagadougou (UIPM)
                                 </li>
                             </ul>
@@ -1310,257 +1424,300 @@
     </section>
 
     <!-- Skills Section - Version améliorée -->
-<section id="skills" class="section">
-    <div class="container">
-        <div class="glass-card">
-            <div class="section-title">
-                <h2 class="gradient-text">Mes Compétences</h2>
-            </div>
-            
-            <div class="skills-container">
-                <!-- Frontend -->
-                <div class="skills-category">
-                    <h3>Frontend</h3>
-                    <div class="skills-list">
-                        <!-- HTML & CSS -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(228, 77, 38, 0.1); color: #E44D26;">
-                                        <i class="fab fa-html5"></i>
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="glass-card">
+                <div class="section-title">
+                    <h2 class="gradient-text">Mes Compétences</h2>
+                </div>
+
+                <div class="skills-container">
+                    <!-- Frontend -->
+                    <div class="skills-category">
+                        <h3>Frontend</h3>
+                        <div class="skills-list">
+                            <!-- HTML & CSS -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(228, 77, 38, 0.1); color: #E44D26;">
+                                            <i class="fab fa-html5"></i>
+                                        </div>
+                                        HTML & CSS
                                     </div>
-                                    HTML & CSS
+                                    <span class="skill-percent" style="color: #E44D26;">95%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #E44D26;">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%; background: linear-gradient(to right, #E44D26, #F16529);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- JavaScript -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(240, 219, 79, 0.1); color: #F0DB4F;">
-                                        <i class="fab fa-js"></i>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 95%; background: linear-gradient(to right, #E44D26, #F16529);">
                                     </div>
-                                    JavaScript
                                 </div>
-                                <span class="skill-percent" style="color: #F0DB4F;">50%</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%; background: linear-gradient(to right, #F0DB4F, #F7DF1E);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Tailwind CSS -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(56, 178, 172, 0.1); color: #38B2AC;">
-                                        <i class="fas fa-paint-brush"></i>
+
+                            <!-- JavaScript -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(240, 219, 79, 0.1); color: #F0DB4F;">
+                                            <i class="fab fa-js"></i>
+                                        </div>
+                                        JavaScript
                                     </div>
-                                    Tailwind CSS
+                                    <span class="skill-percent" style="color: #F0DB4F;">50%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #38B2AC;">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%; background: linear-gradient(to right, #38B2AC, #06B6D4);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Bootstrap -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(121, 82, 179, 0.1); color: #7952B3;">
-                                        <i class="fab fa-bootstrap"></i>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 50%; background: linear-gradient(to right, #F0DB4F, #F7DF1E);">
                                     </div>
-                                    Bootstrap
                                 </div>
-                                <span class="skill-percent" style="color: #7952B3;">80%</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%; background: linear-gradient(to right, #7952B3, #563D7C);"></div>
+
+                            <!-- Tailwind CSS -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(56, 178, 172, 0.1); color: #38B2AC;">
+                                            <i class="fas fa-paint-brush"></i>
+                                        </div>
+                                        Tailwind CSS
+                                    </div>
+                                    <span class="skill-percent" style="color: #38B2AC;">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 85%; background: linear-gradient(to right, #38B2AC, #06B6D4);">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bootstrap -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(121, 82, 179, 0.1); color: #7952B3;">
+                                            <i class="fab fa-bootstrap"></i>
+                                        </div>
+                                        Bootstrap
+                                    </div>
+                                    <span class="skill-percent" style="color: #7952B3;">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 80%; background: linear-gradient(to right, #7952B3, #563D7C);">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Backend -->
-                <div class="skills-category">
-                    <h3>Backend</h3>
-                    <div class="skills-list">
-                        <!-- PHP & MySQL -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(119, 123, 179, 0.1); color: #777BB3;">
-                                        <i class="fab fa-php"></i>
+
+                    <!-- Backend -->
+                    <div class="skills-category">
+                        <h3>Backend</h3>
+                        <div class="skills-list">
+                            <!-- PHP & MySQL -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(119, 123, 179, 0.1); color: #777BB3;">
+                                            <i class="fab fa-php"></i>
+                                        </div>
+                                        PHP & MySQL
                                     </div>
-                                    PHP & MySQL
+                                    <span class="skill-percent" style="color: #777BB3;">75%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #777BB3;">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%; background: linear-gradient(to right, #777BB3, #4F5B93);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Python -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(55, 118, 171, 0.1); color: #3776AB;">
-                                        <i class="fab fa-python"></i>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 75%; background: linear-gradient(to right, #777BB3, #4F5B93);">
                                     </div>
-                                    Python
                                 </div>
-                                <span class="skill-percent" style="color: #3776AB;">70%</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%; background: linear-gradient(to right, #3776AB, #306998);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Laravel -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(255, 45, 32, 0.1); color: #FF2D20;">
-                                        <i class="fab fa-laravel"></i>
+
+                            <!-- Python -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(55, 118, 171, 0.1); color: #3776AB;">
+                                            <i class="fab fa-python"></i>
+                                        </div>
+                                        Python
                                     </div>
-                                    Laravel
+                                    <span class="skill-percent" style="color: #3776AB;">70%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #FF2D20;">40%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 40%; background: linear-gradient(to right, #FF2D20, #F05340);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- C# -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(94, 94, 94, 0.1); color: #5E5E5E;">
-                                        <i class="fab fa-microsoft"></i>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 70%; background: linear-gradient(to right, #3776AB, #306998);">
                                     </div>
-                                    C#
                                 </div>
-                                <span class="skill-percent" style="color: #5E5E5E;">60%</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 60%; background: linear-gradient(to right, #5E5E5E, #3E3E3E);"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Mobile -->
-                <div class="skills-category">
-                    <h3>Mobile</h3>
-                    <div class="skills-list">
-                        <!-- Flutter -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(97, 202, 250, 0.1); color: #61CAFA;">
-                                        <i class="fas fa-mobile-alt"></i>
+
+                            <!-- Laravel -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(255, 45, 32, 0.1); color: #FF2D20;">
+                                            <i class="fab fa-laravel"></i>
+                                        </div>
+                                        Laravel
                                     </div>
-                                    Flutter
+                                    <span class="skill-percent" style="color: #FF2D20;">40%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #61CAFA;">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%; background: linear-gradient(to right, #61CAFA, #42A5F5);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Dart -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(0, 163, 231, 0.1); color: #00A3E7;">
-                                        <i class="fas fa-code"></i>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 40%; background: linear-gradient(to right, #FF2D20, #F05340);">
                                     </div>
-                                    Dart
                                 </div>
-                                <span class="skill-percent" style="color: #00A3E7;">70%</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%; background: linear-gradient(to right, #00A3E7, #0085C9);"></div>
+
+                            <!-- C# -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(94, 94, 94, 0.1); color: #5E5E5E;">
+                                            <i class="fab fa-microsoft"></i>
+                                        </div>
+                                        C#
+                                    </div>
+                                    <span class="skill-percent" style="color: #5E5E5E;">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 60%; background: linear-gradient(to right, #5E5E5E, #3E3E3E);">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Outils -->
-                <div class="skills-category">
-                    <h3>Outils & Plateformes</h3>
-                    <div class="skills-list">
-                        <!-- Git -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(240, 81, 51, 0.1); color: #F05133;">
-                                        <i class="fab fa-git-alt"></i>
+
+                    <!-- Mobile -->
+                    <div class="skills-category">
+                        <h3>Mobile</h3>
+                        <div class="skills-list">
+                            <!-- Flutter -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(97, 202, 250, 0.1); color: #61CAFA;">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        Flutter
                                     </div>
-                                    Git
+                                    <span class="skill-percent" style="color: #61CAFA;">75%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #F05133;">80%</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 75%; background: linear-gradient(to right, #61CAFA, #42A5F5);">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%; background: linear-gradient(to right, #F05133, #E44D30);"></div>
+
+                            <!-- Dart -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(0, 163, 231, 0.1); color: #00A3E7;">
+                                            <i class="fas fa-code"></i>
+                                        </div>
+                                        Dart
+                                    </div>
+                                    <span class="skill-percent" style="color: #00A3E7;">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 70%; background: linear-gradient(to right, #00A3E7, #0085C9);">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
-                        <!-- GitHub -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(36, 41, 46, 0.1); color: #24292E;">
-                                        <i class="fab fa-github"></i>
+                    </div>
+
+                    <!-- Outils -->
+                    <div class="skills-category">
+                        <h3>Outils & Plateformes</h3>
+                        <div class="skills-list">
+                            <!-- Git -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(240, 81, 51, 0.1); color: #F05133;">
+                                            <i class="fab fa-git-alt"></i>
+                                        </div>
+                                        Git
                                     </div>
-                                    GitHub
+                                    <span class="skill-percent" style="color: #F05133;">80%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #24292E;">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%; background: linear-gradient(to right, #24292E, #181D20);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- WordPress -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(33, 117, 155, 0.1); color: #21759B;">
-                                        <i class="fab fa-wordpress"></i>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 80%; background: linear-gradient(to right, #F05133, #E44D30);">
                                     </div>
-                                    WordPress
                                 </div>
-                                <span class="skill-percent" style="color: #21759B;">65%</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 65%; background: linear-gradient(to right, #21759B, #195E7F);"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Figma -->
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <div class="skill-name">
-                                    <div class="skill-icon" style="background-color: rgba(162, 89, 255, 0.1); color: #A259FF;">
-                                        <i class="fab fa-figma"></i>
+
+                            <!-- GitHub -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(36, 41, 46, 0.1); color: #24292E;">
+                                            <i class="fab fa-github"></i>
+                                        </div>
+                                        GitHub
                                     </div>
-                                    Figma
+                                    <span class="skill-percent" style="color: #24292E;">85%</span>
                                 </div>
-                                <span class="skill-percent" style="color: #A259FF;">55%</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 85%; background: linear-gradient(to right, #24292E, #181D20);">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 55%; background: linear-gradient(to right, #A259FF, #8C4AFF);"></div>
+
+                            <!-- WordPress -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(33, 117, 155, 0.1); color: #21759B;">
+                                            <i class="fab fa-wordpress"></i>
+                                        </div>
+                                        WordPress
+                                    </div>
+                                    <span class="skill-percent" style="color: #21759B;">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 65%; background: linear-gradient(to right, #21759B, #195E7F);">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Figma -->
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <div class="skill-name">
+                                        <div class="skill-icon"
+                                            style="background-color: rgba(162, 89, 255, 0.1); color: #A259FF;">
+                                            <i class="fab fa-figma"></i>
+                                        </div>
+                                        Figma
+                                    </div>
+                                    <span class="skill-percent" style="color: #A259FF;">55%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress"
+                                        style="width: 55%; background: linear-gradient(to right, #A259FF, #8C4AFF);">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1575,9 +1732,10 @@
             <div class="glass-card">
                 <div class="section-title">
                     <h2 class="gradient-text">Mes Réalisations</h2>
-                    <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">Découvrez une sélection de mes projets les plus significatifs</p>
+                    <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;padding: 7px;">Découvrez une
+                        sélection de mes projets les plus significatifs</p>
                 </div>
-                
+
                 <div class="projects-grid">
                     <!-- Projet Santé Togo -->
                     <div class="project-card">
@@ -1587,7 +1745,9 @@
                         <div class="project-body">
                             <h3 class="project-title">Santé Togo</h3>
                             <p class="project-description">
-                                Plateforme complète pour améliorer l'accès aux soins au Togo avec dossier médical numérique, prise de rendez-vous en ligne, rappels de médicaments et gestion des dons de sang.
+                                Plateforme complète pour améliorer l'accès aux soins au Togo avec dossier médical
+                                numérique, prise de rendez-vous en ligne, rappels de médicaments et gestion des dons de
+                                sang.
                             </p>
                             <div class="tech-tags">
                                 <span class="tech-tag" style="color: #3B82F6;">
@@ -1605,7 +1765,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- Projet GénieScore -->
                     <div class="project-card">
                         <div class="project-icon">
@@ -1614,7 +1774,8 @@
                         <div class="project-body">
                             <h3 class="project-title">GénieScore</h3>
                             <p class="project-description">
-                                Application web complète pour la gestion des compétitions de génie en herbe avec minuteur interactif, attribution dynamique de points et tableau de scores en temps réel.
+                                Application web complète pour la gestion des compétitions de génie en herbe avec
+                                minuteur interactif, attribution dynamique de points et tableau de scores en temps réel.
                             </p>
                             <div class="tech-tags">
                                 <span class="tech-tag" style="color: #F59E0B;">
@@ -1629,7 +1790,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- Projet Tech Express -->
                     <div class="project-card">
                         <div class="project-icon">
@@ -1638,7 +1799,8 @@
                         <div class="project-body">
                             <h3 class="project-title">Tech Express</h3>
                             <p class="project-description">
-                                Boutique en ligne moderne spécialisée dans les produits technologiques avec interface responsive, système de panier et filtres avancés.
+                                Boutique en ligne moderne spécialisée dans les produits technologiques avec interface
+                                responsive, système de panier et filtres avancés.
                             </p>
                             <div class="tech-tags">
                                 <span class="tech-tag" style="color: #3B82F6;">
@@ -1667,13 +1829,15 @@
             <div class="glass-card">
                 <div class="section-title">
                     <h2 class="gradient-text">Certifications</h2>
-                    <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">Mes certifications et formations attestant de mes compétences</p>
+                    <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;padding: 7px;">Mes
+                        certifications et formations attestant de mes compétences</p>
                 </div>
-                
+
                 <div class="certificates-grid">
                     <!-- Certificat SQL -->
                     <div class="certificate-card">
-                        <img src="images/sql_intermediate certificate_page-0001.jpg" alt="Certificat SQL" class="certificate-img">
+                        <img src="images/sql_intermediate certificate_page-0001.jpg" alt="Certificat SQL"
+                            class="certificate-img">
                         <div class="certificate-body">
                             <h3 class="certificate-title">SQL (Intermediate)</h3>
                             <p class="certificate-issuer">
@@ -1684,7 +1848,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <!-- Certificat Python -->
                     <div class="certificate-card">
                         <img src="images/CertificationPython.jpg" alt="Certificat Python" class="certificate-img">
@@ -1698,11 +1862,11 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <!-- Certificat Linux -->
                     <div class="certificate-card">
-                        <img src="images/Partner-_NDG_Linux_Unhatched_certificate_georgegale825-gmail-com_3ce0e2ce-37c6-4f23-83a1-9d01e2b3c992_page-0001.jpg" 
-                             alt="Certificat Linux" class="certificate-img">
+                        <img src="images/Partner-_NDG_Linux_Unhatched_certificate_georgegale825-gmail-com_3ce0e2ce-37c6-4f23-83a1-9d01e2b3c992_page-0001.jpg"
+                            alt="Certificat Linux" class="certificate-img">
                         <div class="certificate-body">
                             <h3 class="certificate-title">NDG Linux Unhatched</h3>
                             <p class="certificate-issuer">
@@ -1724,42 +1888,45 @@
             <div class="glass-card">
                 <div class="section-title">
                     <h2 class="gradient-text">Travaillons Ensemble</h2>
-                    <p style="color: var(--text-light); max-width: 700px; margin: 0 auto;">Disponible pour des collaborations ou des opportunités professionnelles</p>
+                    <p style="color: var(--text-light); max-width: 700px; margin: 0 auto; padding: 7px;">Disponible pour
+                        des collaborations ou des opportunités professionnelles</p>
                 </div>
-                
+
                 <div class="contact-content">
                     <form class="contact-form">
                         <div class="form-group">
                             <label class="form-label">Nom complet *</label>
                             <input type="text" class="form-input" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-label">Email *</label>
                             <input type="email" class="form-input" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-label">Sujet *</label>
                             <input type="text" class="form-input" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-label">Message *</label>
                             <textarea class="form-input" required></textarea>
                         </div>
-                        
-                        <button type="submit" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+
+                        <button type="submit" class="btn-primary"
+                            style="width: 100%; padding: 15px; font-size: 1.1rem;">
                             <i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Envoyer le message
                         </button>
                     </form>
-                    
+
                     <div class="contact-info">
                         <h3 class="gradient-text" style="font-size: 1.8rem; margin-bottom: 25px;">Coordonnées</h3>
                         <p style="margin-bottom: 30px; color: var(--text-light); line-height: 1.8; font-size: 1.1rem;">
-                            Disponible pour des missions freelance ou des opportunités à temps plein. N'hésitez pas à me contacter pour discuter de votre projet ou simplement échanger.
+                            Disponible pour des missions freelance ou des opportunités à temps plein. N'hésitez pas à me
+                            contacter pour discuter de votre projet ou simplement échanger.
                         </p>
-                        
+
                         <div class="contact-details">
                             <div class="contact-item">
                                 <i class="fas fa-map-marker-alt"></i>
@@ -1768,7 +1935,7 @@
                                     <p>Lomé, Togo</p>
                                 </div>
                             </div>
-                            
+
                             <div class="contact-item">
                                 <i class="fas fa-phone-alt"></i>
                                 <div class="contact-item-content">
@@ -1776,7 +1943,7 @@
                                     <p>+228 93 03 63 51</p>
                                 </div>
                             </div>
-                            
+
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
                                 <div class="contact-item-content">
@@ -1785,7 +1952,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <h3 class="gradient-text" style="font-size: 1.8rem; margin-bottom: 25px;">Réseaux Sociaux</h3>
                         <div class="social-links">
                             <a href="https://github.com/CodeVortex2" target="_blank" class="social-icon">
@@ -1855,27 +2022,27 @@
     </nav>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Effet de particules
             function createParticles() {
                 const particlesContainer = document.querySelector('.particles');
                 const particleCount = 30;
-                
+
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('particle');
-                    
+
                     // Position aléatoire
                     const posX = Math.random() * 100;
                     const posY = Math.random() * 100;
-                    
+
                     // Taille aléatoire
                     const size = Math.random() * 10 + 5;
-                    
+
                     // Durée d'animation aléatoire
                     const duration = Math.random() * 20 + 10;
                     const delay = Math.random() * 5;
-                    
+
                     // Appliquer les styles
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
@@ -1883,46 +2050,46 @@
                     particle.style.top = `${posY}%`;
                     particle.style.animationDuration = `${duration}s`;
                     particle.style.animationDelay = `${delay}s`;
-                    
+
                     particlesContainer.appendChild(particle);
                 }
             }
-            
+
             createParticles();
-            
+
             // Effet de parallaxe pour les bulles
-            window.addEventListener('mousemove', function(e) {
+            window.addEventListener('mousemove', function (e) {
                 const bubbles = document.querySelectorAll('.bubble');
                 const x = e.clientX / window.innerWidth;
                 const y = e.clientY / window.innerHeight;
-                
+
                 bubbles.forEach((bubble, index) => {
                     const speed = (index + 1) * 0.5;
                     const xMove = x * speed * 100 - 50;
                     const yMove = y * speed * 100 - 50;
-                    
+
                     bubble.style.transform = `translate(${xMove}px, ${yMove}px)`;
                 });
             });
-            
+
             // Animation de la souris pour le bouton
             const buttons = document.querySelectorAll('.btn-primary');
             buttons.forEach(button => {
-                button.addEventListener('mousemove', function(e) {
+                button.addEventListener('mousemove', function (e) {
                     const x = e.pageX - this.offsetLeft;
                     const y = e.pageY - this.offsetTop;
-                    
+
                     this.style.setProperty('--x', x + 'px');
                     this.style.setProperty('--y', y + 'px');
                 });
             });
-            
+
             // Effet de type machine à écrire
             const text = "Créateur de solutions numériques innovantes et performantes";
             const element = document.querySelector('.hero p');
             if (element) {
                 let i = 0;
-                
+
                 function typeWriter() {
                     if (i < text.length) {
                         element.innerHTML += text.charAt(i);
@@ -1930,26 +2097,26 @@
                         setTimeout(typeWriter, 50);
                     }
                 }
-                
+
                 // Démarrer l'animation après un délai
                 setTimeout(() => {
                     element.innerHTML = '';
                     typeWriter();
                 }, 1500);
             }
-            
+
             // Observer les sections pour l'animation
             const sections = document.querySelectorAll('.section');
             const navItems = document.querySelectorAll('.nav-item');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        
+
                         // Ajouter une classe pour déclencher les animations CSS
                         entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                        
+
                         // Animate progress bars when skills section is visible
                         if (entry.target.id === 'skills') {
                             const progressBars = document.querySelectorAll('.skill-progress');
@@ -1964,48 +2131,48 @@
                     }
                 });
             }, { threshold: 0.1 });
-            
+
             sections.forEach(section => {
                 observer.observe(section);
             });
-            
+
             // Navigation
             navItems.forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function () {
                     const sectionId = this.getAttribute('data-section');
-                    
+
                     // Mettre à jour l'élément actif
                     navItems.forEach(navItem => {
                         navItem.classList.remove('active');
                     });
                     this.classList.add('active');
-                    
+
                     // Effet de vague
                     this.classList.add('animate__animated', 'animate__pulse');
                     setTimeout(() => {
                         this.classList.remove('animate__animated', 'animate__pulse');
                     }, 1000);
-                    
+
                     // Faire défiler jusqu'à la section
                     document.getElementById(sectionId).scrollIntoView({
                         behavior: 'smooth'
                     });
                 });
             });
-            
+
             // Mettre à jour la navigation active au scroll
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 let current = '';
-                
+
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.clientHeight;
-                    
+
                     if (pageYOffset >= (sectionTop - 100)) {
                         current = section.getAttribute('id');
                     }
                 });
-                
+
                 navItems.forEach(item => {
                     item.classList.remove('active');
                     if (item.getAttribute('data-section') === current) {
@@ -2013,16 +2180,16 @@
                     }
                 });
             });
-            
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+                anchor.addEventListener('click', function (e) {
                     if (this.getAttribute('href') === '#') return;
-                    
+
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    
+
                     if (targetElement) {
                         targetElement.scrollIntoView({
                             behavior: 'smooth'
@@ -2030,18 +2197,18 @@
                     }
                 });
             });
-            
+
             // Form submission
             const contactForm = document.querySelector('.contact-form');
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+                contactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     // Animation de succès
                     const submitBtn = this.querySelector('button[type="submit"]');
                     submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé!';
                     submitBtn.style.backgroundColor = '#10B981';
-                    
+
                     // Réinitialiser après 3 secondes
                     setTimeout(() => {
                         submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Envoyer le message';
@@ -2050,7 +2217,7 @@
                     }, 3000);
                 });
             }
-            
+
             // Effet de survol sur les cartes de projet
             const projectCards = document.querySelectorAll('.project-card');
             projectCards.forEach(card => {
@@ -2058,7 +2225,7 @@
                     const icon = card.querySelector('.project-icon i');
                     icon.classList.add('animate__animated', 'animate__pulse');
                 });
-                
+
                 card.addEventListener('mouseleave', () => {
                     const icon = card.querySelector('.project-icon i');
                     icon.classList.remove('animate__animated', 'animate__pulse');
@@ -2067,4 +2234,5 @@
         });
     </script>
 </body>
+
 </html>
