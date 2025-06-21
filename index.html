@@ -23,6 +23,8 @@
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <style>
         :root {
             --primary: #6366f1;
@@ -1893,25 +1895,25 @@
                 </div>
 
                 <div class="contact-content">
-                    <form class="contact-form">
+                    <form class="contact-form" id="contact-form">
                         <div class="form-group">
                             <label class="form-label">Nom complet *</label>
-                            <input type="text" class="form-input" required>
+                            <input type="text" class="form-input" name="from_name" required>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Email *</label>
-                            <input type="email" class="form-input" required>
+                            <input type="email" class="form-input" name="from_email" required>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Sujet *</label>
-                            <input type="text" class="form-input" required>
+                            <input type="text" class="form-input" name="subject" required>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Message *</label>
-                            <textarea class="form-input" required></textarea>
+                            <textarea class="form-input" name="message" required></textarea>
                         </div>
 
                         <button type="submit" class="btn-primary"
@@ -2022,6 +2024,51 @@
     </nav>
 
     <script>
+        // Initialisez EmailJS avec votre User ID
+        emailjs.init('vQM3C_ppbHw3qZXYt');
+        // Form submission with EmailJS
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+
+                // Afficher le chargement
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+                submitBtn.disabled = true;
+
+                // Envoyer l'email via EmailJS
+                emailjs.sendForm('service_b56grgr', 'template_ht4o4h9', this)
+                    .then(function () {
+                        // Succès
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé!';
+                        submitBtn.style.backgroundColor = '#10B981';
+                        contactForm.reset();
+
+                        // Réinitialiser après 3 secondes
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.backgroundColor = '';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }, function (error) {
+                        // Erreur
+                        submitBtn.innerHTML = '<i class="fas fa-times"></i> Erreur';
+                        submitBtn.style.backgroundColor = '#EF4444';
+                        console.error('Erreur:', error);
+
+                        // Réinitialiser après 3 secondes
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.backgroundColor = '';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             // Effet de particules
             function createParticles() {
